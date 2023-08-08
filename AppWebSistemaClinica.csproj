@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="C1Model\C1ModelContext\" />
     <Folder Include="C2DataAccess\C2DatAccGeneric\" />
     <Folder Include="C3BusinessLogic\" />
     <Folder Include="wwwroot\img\" />

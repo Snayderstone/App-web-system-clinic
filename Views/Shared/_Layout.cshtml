@@ -7,12 +7,43 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/AppWebSistemaClinica.styles.css" asp-append-version="true" />
+
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="Plantilla web Responsive de Medizin, Plantillas web Bootstrap, Plantillas web planas, Plantilla web compatible con Android, Plantilla web compatible con teléfonos inteligentes, diseños web gratuitos para Nokia, Samsung, LG, SonyEricsson, diseño web de Motorola" />
+    
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+
+    <!-- //Meta tag Keywords -->
+    <!-- Custom-Files -->
+    <link rel="stylesheet" href="~/css/bootstrap.css">
+    <!-- Bootstrap-Core-CSS -->
+    <link rel="stylesheet" href="~/css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="~/css/slider.css" type="text/css" media="all" />
+    <!-- Style-CSS -->
+    <!-- font-awesome-icons -->
+    <link href="~/css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome-icons -->
+    <!-- /Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
+    <!-- //Fonts -->
+
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AppWebSistemaClinica</a>
+                <a class="navbar-brand logo editContent" asp-area="" asp-controller="Home" asp-action="Index">
+                    <span class="fa fa-meetup"></span>edizin
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,30 +51,169 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">CASA</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Departamentos">DEPARTAMENTOS</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contactanos">CONTACTANOS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MasInformacion">SOBRE NOSOTROS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Registro">REGISTRO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Acceso">ACCESO</a>
+                        </li>
+                        <li class="icons">
+                            <a href="#" class="face-bk"><span class="fa fa-facebook" aria-hidden="true"></span></a>
+                        </li>
+                        <li class="icons"><a href="#" class="twitter"><span class="fa fa-twitter" aria-hidden="true"></span></a></li>
+                        <li class="icons"><a href="#" class="dribble"><span class="fa fa-dribbble"></span></a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+  
+ <!-- //header -->
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <!-- //grids-content1 -->
+    <!-- footer -->
+    <footer>
         <div class="container">
-            &copy; 2023 - AppWebSistemaClinica - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row footer-top">
+                <div class="col-lg-4 footer-grid_section_w3layouts">
+                    <h2 class="logo-2 mb-lg-4 mb-3">
+                        <a asp-area="" asp-controller="Home" asp-action="Index"><span class="fa fa-meetup"></span>edizin</a>
+                    </h2>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <h4 class="sub-con-fo ad-info my-4">Catch on Social</h4>
+                    <ul class="w3layouts_social_list list-unstyled">
+                        <li>
+                            <a href="#" class="w3pvt_facebook">
+                                <span class="fa fa-facebook-f"></span>
+                            </a>
+                        </li>
+                        <li class="mx-2">
+                            <a href="#" class="w3pvt_twitter">
+                                <span class="fa fa-twitter"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="w3pvt_dribble">
+                                <span class="fa fa-dribbble"></span>
+                            </a>
+                        </li>
+                        <li class="ml-2">
+                            <a href="#" class="w3pvt_google">
+                                <span class="fa fa-google-plus"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-8 footer-right">
+                    <div class="w3layouts-news-letter">
+                        <h3 class="footer-title mb-lg-4 mb-3">Boletin informativo</h3>
+
+                        <p>
+                            Al suscribirse a nuestra lista de correo, siempre recibirá nuestras últimas noticias y actualizaciones.
+                        </p>
+                        <form action="#" method="post" class="w3layouts-newsletter">
+                            <input type="email" name="Email" placeholder="Ingrese su email..." required="">
+                            <button class="btn1"><span class="fa fa-paper-plane-o" aria-hidden="true"></span></button>
+                        </form>
+                    </div>
+                    <div class="row mt-lg-4 bottom-w3layouts-sec-nav mx-0">
+                        <div class="col-md-4 footer-grid_section_w3layouts">
+                            <h3 class="footer-title mb-lg-4 mb-3">Informaciòn</h3>
+                            <ul class="list-unstyled w3layouts-icons">
+                                <li class="mt-3">
+                                    <a asp-controller="Home" asp-action="Index">CASA</a>
+                                </li>
+                                <li class="mt-3">
+                                    <a asp-controller="Home" asp-action="Sobrenosotros">SOBRE NOSOTROS</a>
+                                </li>
+                                <li class="mt-3">
+                                    <a asp-controller="Home" asp-action="Departamentos">DEPARTAMENTOS</a>
+                                </li>
+                                <li class="mt-3">
+                                    <a asp-controller="Home" asp-action="Contactanos">CONTACTANOS</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 footer-grid_section_w3layouts">
+                            <!-- social icons -->
+                            <div class="agileinfo_social_icons">
+                                <h3 class="footer-title mb-lg-4 mb-3">Servicio al Cliente</h3>
+                                <ul class="list-unstyled w3layouts-icons">
+
+                                    <li class="mt-3">
+                                        <a asp-controller="Home" asp-action="Sobrenosotros">SOBRE NOSOTROS</a>
+                                    </li>
+                                    <li class="mt-3">
+                                        <a href="#">Entrega y Devoluciones</a>
+                                    </li>
+                                    <li class="mt-3">
+                                        <a href="#">Garantia</a>
+                                    </li>
+                                    <li class="mt-3">
+                                        <a href="#">Terminos y Condiciones</a>
+                                    </li>
+                                    <li class="mt-3">
+                                        <a href="#">Privacidad y Politicas</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- social icons -->
+                        </div>
+                        <div class="col-md-4 footer-grid_section_w3layouts my-md-0 my-5">
+                            <h3 class="footer-title mb-lg-4 mb-3">Inf de Contacto</h3>
+                            <div class="contact-info">
+                                <div class="footer-address-inf">
+                                    <h4 class="ad-info mb-2">Telefono</h4>
+                                    <p>+121 098 8907 9987</p>
+                                </div>
+                                <div class="footer-address-inf my-4">
+                                    <h4 class="ad-info mb-2">Email </h4>
+                                    <p><a href="mailto:grupo5@gmail.com">info@example.com</a></p>
+                                </div>
+                                <div class="footer-address-inf">
+                                    <h4 class="ad-info mb-2">Ubicaciòn</h4>
+                                    <p>Universidad Central, Quito Ecuador </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
+  <footer class="border-top footer text-muted">
+            <div class="container">
+                <div class="row">
+                    <p class="col-md-10 text-left">© 2023 Medizin. Todos los derechos reservados | Diseñado por
+                        <a href="http://w3layouts.com"> W3layouts.</a>
+                    </p>
+                    <!-- move top icon -->
+                    <a class="move-top text-lg-right text-center col-md-2" asp-area="" asp-controller="Home" asp-action="Index">
+                        <span class="fa fa-angle-double-up" aria-hidden="true"></span></a>
+                     <!-- //move top icon -->
+                </div>
+            </div>
+     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+

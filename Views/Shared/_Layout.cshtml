@@ -63,11 +63,12 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MasInformacion">SOBRE NOSOTROS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Registro">REGISTRO</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Acceso">ACCESO</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Registro">REGISTRO</a>
+                        </li>
+                      
                         <li class="icons">
                             <a href="#" class="face-bk"><span class="fa fa-facebook" aria-hidden="true"></span></a>
                         </li>
@@ -91,6 +92,7 @@
     <footer>
         <div class="container">
             <div class="row footer-top">
+
                 <div class="col-lg-4 footer-grid_section_w3layouts">
                     <h2 class="logo-2 mb-lg-4 mb-3">
                         <a asp-area="" asp-controller="Home" asp-action="Index"><span class="fa fa-meetup"></span>edizin</a>
@@ -194,22 +196,24 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </footer>
-  <footer class="border-top footer text-muted">
-            <div class="container">
+
                 <div class="row">
-                    <p class="col-md-10 text-left">© 2023 Medizin. Todos los derechos reservados | Diseñado por
+                    <p class="col-md-10 text-left">
+                        © 2023 Medizin. Todos los derechos reservados | Diseñado por
                         <a href="http://w3layouts.com"> W3layouts.</a>
                     </p>
                     <!-- move top icon -->
                     <a class="move-top text-lg-right text-center col-md-2" asp-area="" asp-controller="Home" asp-action="Index">
-                        <span class="fa fa-angle-double-up" aria-hidden="true"></span></a>
-                     <!-- //move top icon -->
+                        <span class="fa fa-angle-double-up" aria-hidden="true"></span>
+                    </a>
+                    <!-- //move top icon -->
                 </div>
             </div>
-     </footer>
+
+        </div>
+             
+    </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

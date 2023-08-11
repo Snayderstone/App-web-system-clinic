@@ -9,6 +9,9 @@
   <ItemGroup>
     <Folder Include="C2DataAccess\C2DatAccGeneric\" />
     <Folder Include="C3BusinessLogic\" />
+    <Folder Include="Views\Cliente\" />
+    <Folder Include="Views\Administrador\" />
+    <Folder Include="Views\Profesional\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -45,6 +45,15 @@ namespace AppWebSistemaClinica.Controllers
         {
             return View();
         }
+        public IActionResult contraseña()
+        {
+            return View();
+        }
+
+        public IActionResult tabla()
+        {
+            return View();
+        }
 
 
 

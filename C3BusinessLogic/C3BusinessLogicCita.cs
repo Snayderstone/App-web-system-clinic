@@ -1,7 +1,7 @@
-﻿using FinalGrupal.C1Model;
-using FinalGrupal.C2DataAccess.C2AccessGeneric;
+﻿using AppWebSistemaClinica.C1Model;
+using AppWebSistemaClinica.C2DataAccess.C2AccessGeneric;
 
-namespace FinalGrupal.C3BusinessLogic
+namespace AppWebSistemaClinica.C3BusinessLogic
 {
     internal class C3BusinessLogicCita
     {

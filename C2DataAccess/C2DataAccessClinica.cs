@@ -1,6 +1,6 @@
-﻿using FinalGrupal.C2DataAccess.C2AccessGeneric;
+﻿using AppWebSistemaClinica.C2DataAccess.C2AccessGeneric;
 
-namespace FinalGrupal.C2DataAccess
+namespace AppWebSistemaClinica.C2DataAccess
 {
     internal class C2DataAccessClinica : C2AccessGenericGeneric<C2DataAccessClinica>
     {

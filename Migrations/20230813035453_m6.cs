@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AppWebSistemaClinica.Migrations
 {
     /// <inheritdoc />
-    public partial class M1 : Migration
+    public partial class m6 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

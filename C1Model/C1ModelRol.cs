@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace FinalGrupal.C1Model
+namespace AppWebSistemaClinica.C1Model
 {
     [Table("ROLES")]
     public class C1ModelRol

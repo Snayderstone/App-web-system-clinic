@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace FinalGrupal.C1Model.C1ModelContext
+namespace AppWebSistemaClinica.C1Model.C1ModelContext
 {
     public class C1ModelContextContexto : DbContext
     {

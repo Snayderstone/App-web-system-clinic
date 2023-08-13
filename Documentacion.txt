@@ -1,0 +1,68 @@
+﻿              INSTALACION DE EF
+
+1.EF Core DB provider: Microsoft.EntityFrameworkCore.SqlServer
+2.EF Core tools: Microsoft.EntityFrameworkCore.Tools
+
+              CREACION DE CAPAS
+C1MODEL----->C1MODCONFIG-C1MODCONTEXT-C1MODDB
+C2DATACCESS----->C2DAClass
+C3BUSINESSLOGIC---->C3BLVALIDATIONS---C3BLClass
+C4PRESENTATION----->C4PRMENUS---C4PRProgramClass
+
+            CONFIGURACION DE LA PRIMERA CAPA C1MODCONFIG
+
+a) Agregar el archivo appsettings con la cadena de conexion
+CADENA DE CONEXION PARA VALIDACION DE WIN:
+"Data Source=PC-SNAYDERSTONE\\SQLEXPRESS;Initial Catalog=DB_LG_EF_FIRST_CODE_CONSOLE;Integrated Security=False;"
+CADENA DE CONEXION PARA VALIDACION SQL SERVER:
+"Server=PC-SNAYDERSTONE\\SQLEXPRESS;Database=DB_LG_EF_FIRST_CODE_CONSOLE;User Id=sa;Password=2846; Encrypt=False;"
+
+GET
+
+c) Agregamos la clase del modelo para usar en neustro contexto con todas las etiquetas y relaciones
+
+b) Agregamos la clase del Context y eredamos de dbcontext asignamos los dos constructures 
+   Para la conexion a la bd
+1. Microsoft.Extensions.Configuration.FileExtensions
+2. Microsoft.Extensions.Configuration.Json
+   Luego agregamos Los objetos y tablas
+
+
+                   EJECUTAMOS
+En el program debe estar el metodo main para que funcione
+
+
+                           REALIZAR LAS MIGRACIONES RESPECTIVAMENTE 
+
+                 mdlet                      Description
+        --------------------------  ---------------------------------------------------
+        Sqllocaldb i MSSQLLocalDB    Ver estado del servidor.
+
+        Get-Help entityframework    Obtienes el siguiente cuadro.
+
+        Add-Migration               Adds a new migration.
+
+        Bundle-Migration            Creates an executable to update the database.
+
+        Drop-Database               Drops the database.
+
+        Get-DbContext               Lists and gets information about available DbContext types.
+
+        Get-Migration               Lists available migrations.
+
+        Optimize-DbContext          Generates a compiled version of the model used by the DbContext.
+
+        Remove-Migration            Removes the last migration.
+
+        Scaffold-DbContext          Scaffolds a DbContext and entity types for a database.
+
+        Script-DbContext            Generates a SQL script from the DbContext. Bypasses any migrations.
+
+        Script-Migration            Generates a SQL script from migrations.
+
+        Update-Database             Updates the database to a specified migration.
+
+
+Para evitar conflictos ver que todas los paquetes esten con las mismas versiones
+
+--PROCEDE A PROGRAMAR

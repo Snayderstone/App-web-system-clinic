@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using System.Collections.Generic;
-using FinalGrupal.C1Model.C1ModelContext;
+using AppWebSistemaClinica.C1Model.C1ModelContext;
 
-namespace FinalGrupal.C2DataAccess.C2AccessGeneric
+namespace AppWebSistemaClinica.C2DataAccess.C2AccessGeneric
 {
     internal class C2AccessGenericGeneric<T> : C2AccessGenericIGeneric<T> where T : class
     {

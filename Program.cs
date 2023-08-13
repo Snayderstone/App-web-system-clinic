@@ -1,6 +1,5 @@
-using FinalGrupal.C1Model.C1ModelContext;
+using AppWebSistemaClinica.C1Model.C1ModelContext;
 using Microsoft.EntityFrameworkCore;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

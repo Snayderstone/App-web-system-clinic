@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FinalGrupal.C1Model
+namespace AppWebSistemaClinica.C1Model
 {
     [Table("CLINICAS")]
     public class C1ModelClinica

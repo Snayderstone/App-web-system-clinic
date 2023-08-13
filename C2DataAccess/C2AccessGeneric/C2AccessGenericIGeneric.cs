@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace FinalGrupal.C2DataAccess.C2AccessGeneric
+namespace AppWebSistemaClinica.C2DataAccess.C2AccessGeneric
 {
     internal interface C2AccessGenericIGeneric<T> where T : class
     {

@@ -28,4 +28,3 @@ namespace AppWebSistemaClinica.Controllers
             return View();
         }
     }
-}

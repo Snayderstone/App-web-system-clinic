@@ -1,4 +1,4 @@
-﻿﻿@model List<AppWebSistemaClinica.Models.UsuarioViewModel>
+﻿@model List<AppWebSistemaClinica.Models.UsuarioViewModel>
 
 
 
@@ -32,7 +32,9 @@
                     <td class="table-success">@item.ContrasenaUsuario</td>
                     <td>
                         <a class="btn btn-primary btn-sm " asp-action="Empleado_Detalle" asp-controller="Home" asp-route-idEmpleado=""> Editar</a>
-                        <a class="btn btn-danger btn-sm " asp-action="Eliminar" asp-controller="Home" asp-route-idEmpleado=""> Eliminar</a>
+                    </td>
+                    <td>
+                        @Html.ActionLink("Eliminar","EliminarUsuario")
                     </td>
                         <!-- Agrega aquí tus enlaces de acción, si es necesario --> 
                 </tr>

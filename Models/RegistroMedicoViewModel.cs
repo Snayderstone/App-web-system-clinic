@@ -1,12 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace AppWebSistemaClinica.Models
 {
-    public class RegistroMedicoViewModel : Controller
+    public class RegistroMedicoViewModel
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public int IdRegistroMedico { get; set; }
+
+        [Required(ErrorMessage = "Los detalles del registro médico son requeridos.")]
+        [Display(Name = "Detalles del Registro Médico")]
+        public string DetallesRegistroMedico { get; set; }
+
+        [Required(ErrorMessage = "La historia clínica es requerida.")]
+        [Display(Name = "Historia Clínica")]
+        public int HistoriaClinica { get; set; }
     }
 }

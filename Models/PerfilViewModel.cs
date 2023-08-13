@@ -1,12 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace AppWebSistemaClinica.Models
 {
-    public class PerfilViewModel : Controller
+    public class PerfilViewModel
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public int IdPerfil { get; set; }
+
+        [Required(ErrorMessage = "El ID de Usuario es requerido.")]
+        [Display(Name = "ID de Usuario")]
+        public int IdUsuario { get; set; }
+
+        [Required(ErrorMessage = "El ID de Rol es requerido.")]
+        [Display(Name = "ID de Rol")]
+        public int IdRol { get; set; }
+
+        [Required(ErrorMessage = "El ID de Función es requerido.")]
+        [Display(Name = "ID de Función")]
+        public int IdFuncion { get; set; }
     }
 }

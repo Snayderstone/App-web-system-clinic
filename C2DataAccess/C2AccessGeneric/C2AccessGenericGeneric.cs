@@ -16,6 +16,12 @@ namespace AppWebSistemaClinica.C2DataAccess.C2AccessGeneric
             dbSet = _context.Set<T>();
         }
 
+        //public C2AccessGenericGeneric(C1ModelContextContexto context)
+        //{
+        //    _context = context;
+        //    dbSet = _context.Set<T>();
+        //}
+
         public virtual EntityState Add(T entity)
         {
             return dbSet.Add(entity).State;

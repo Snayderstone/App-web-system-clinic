@@ -1,0 +1,33 @@
+﻿@model List<AppWebSistemaClinica.Models.UsuarioViewModel>
+<html>
+<head>
+    <title>Lista de Usuarios</title>
+</head>
+<body>
+    <h1>Lista de Usuarios</h1>
+
+    <table class="table-primary">
+        <thead>
+            <tr class="table-info">
+                <!--Aqui van los nombres de las columans-->
+                <th class="table-success">ID</th>
+                <th class="table-success">USUARIO</th>
+                <th class="table-success">CONTRASEÑA</th>
+                <th class="table-success">TelefonoCliente</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="table-info">
+                    <td class="table-success">@item.IdUsuario</td>
+                    <td class="table-success">@item.NombreUsuario</td>
+                    <td class="table-success">@item.ContrasenaUsuario</td>
+                        <!-- Agrega aquí tus enlaces de acción, si es necesario --> 
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</body>
+</html>

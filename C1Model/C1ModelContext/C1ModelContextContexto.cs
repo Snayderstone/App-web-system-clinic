@@ -38,21 +38,7 @@ namespace FinalGrupal.C1Model.C1ModelContext
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            try
-            {
-                IConfigurationRoot configuration = new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("D:\\Universidad Central\\Sexto Semestre\\Marcos 2\\Final Grupal\\FinalGrupal\\C1Model\\C1ModelConfig\\appsetings.json")
-                    .Build();
-                string connectionString = configuration.GetConnectionString("MyConnectionString");
 
-                optionsBuilder.UseSqlServer(connectionString);
-            }
-            catch (Exception ex)
-            {
-                // Lanza una excepción personalizada cuando ocurre un error en la configuración de la base de datos
-                throw new Exception("Error al configurar la conexión a la base de datos: " + ex.Message, ex);
-            }
         }
     }
 }

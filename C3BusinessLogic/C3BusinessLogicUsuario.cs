@@ -95,5 +95,9 @@ namespace AppWebSistemaClinica.C3BusinessLogic
             }
         }
 
+        internal bool eliminarUsuario()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

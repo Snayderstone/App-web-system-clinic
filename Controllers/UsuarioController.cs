@@ -1,6 +1,7 @@
 ﻿using AppWebSistemaClinica.C3BusinessLogic;
 using AppWebSistemaClinica.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppWebSistemaClinica.Controllers
 {
@@ -16,28 +17,11 @@ namespace AppWebSistemaClinica.Controllers
             _usuarioLogic = usuarioLogic;
         }
 
-        [HttpGet]
-        [Route("ImprimirUsuarios")]
-       
-        public IActionResult ImprimirUsuarios()
-        {
-            try
-            {
-                var usuarios = _usuarioLogic.imprimirUsuario();
-                var viewModelList = usuarios.Select(c => new UsuarioViewModel
-                {
-                    IdUsuario = c.IdUsuario,
-                    NombreUsuario = c.NombreUsuario,
-                    ContrasenaUsuario = c.ContrasenaUsuario,
-                }).ToList();
 
-                return View(viewModelList); // Retornar la vista
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = "Error al obtener los clientes: " + ex.Message });
-            }
-        }
+    
+
+
+    
 
         public IActionResult Index()
         {

@@ -1,11 +1,18 @@
 ﻿@model List<AppWebSistemaClinica.Models.UsuarioViewModel>
-<html>
-<head>
-    <title>Lista de Usuarios</title>
-</head>
-<body>
-    <h1>Lista de Usuarios</h1>
 
+
+
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>
+<div class="card">
+    <div class="card-header">
+    <h1>Lista de Usuarios</h1>
+    </div>
+    <div class="card-body">
+        <a class="btn btn-success btn-sm" asp-action="Empleado_Detalle" asp-controller="Home" asp-route-idEmpleado="0">Crear Nuevo</a>
+        </div>
     <table class="table-primary">
         <thead>
             <tr class="table-info">
@@ -23,11 +30,13 @@
                     <td class="table-success">@item.IdUsuario</td>
                     <td class="table-success">@item.NombreUsuario</td>
                     <td class="table-success">@item.ContrasenaUsuario</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm " asp-action="Empleado_Detalle" asp-controller="Home" asp-route-idEmpleado=""> Editar</a>
+                        <a class="btn btn-danger btn-sm " asp-action="Eliminar" asp-controller="Home" asp-route-idEmpleado=""> Eliminar</a>
+                    </td>
                         <!-- Agrega aquí tus enlaces de acción, si es necesario --> 
                 </tr>
             }
         </tbody>
     </table>
-
-</body>
-</html>
+</div>

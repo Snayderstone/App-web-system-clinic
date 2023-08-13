@@ -42,7 +42,7 @@ namespace AppWebSistemaClinica.C1Model.C1ModelContext
             {
                 IConfigurationRoot configuration = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("Y:\\Proyectos de VS Community\\100 PROYECTOFINAL\\AppWebSistemaClinica\\C1Model\\appsettings.json")
+                    .AddJsonFile("C:\\Users\\Damián\\Source\\Repos\\AppWebSistemaClinica\\appsettings.json")
                     .Build();
                 string connectionString = configuration.GetConnectionString("MyConnectionString");
 

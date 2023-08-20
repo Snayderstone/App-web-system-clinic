@@ -45,20 +45,19 @@ namespace AppWebSistemaClinica.Controllers
         {
             return View();
         }
-        public IActionResult contraseña()
-        {
-            return View();
-        }
 
-        public IActionResult tabla()
-        {
-            return View();
-        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        public IActionResult IndexAdmin()
+        {
+            //return View("~/Views/Administrador/IndexAdmin.cshtml");
+            // Establecer el diseño específico
+            ViewData["Layout"] = "~/Views/Shared/_LayoutAdmin.cshtml";
+            return View("~/Views/Administrador/IndexAdmin.cshtml");
+        }
     }
 }

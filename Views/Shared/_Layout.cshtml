@@ -1,8 +1,4 @@
-﻿@{
-    Layout = "_Layout"; // Especifica el layout por defecto
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -73,8 +69,9 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Registro">REGISTRO</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Index">Ia a la pagina de usuario</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="IndexAdmin">PagAdmin</a>
                         </li>     
+
                         <li class="icons">
                             <a href="#" class="face-bk"><span class="fa fa-facebook" aria-hidden="true"></span></a>
                         </li>
@@ -86,6 +83,7 @@
         </nav>
     </header>
   
+    @RenderBody()
  <!-- //header -->
     <div class="container">
         <main role="main" class="pb-3">

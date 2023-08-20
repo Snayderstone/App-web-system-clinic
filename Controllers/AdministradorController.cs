@@ -10,10 +10,9 @@ namespace AppWebSistemaClinica.Controllers
 
         [HttpGet]
         [Route("Api/[controller]")]
-        public IActionResult Index()
+        public IActionResult IndexAdmin()
         {
             return View();
-
         }
 
     }

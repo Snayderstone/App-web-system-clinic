@@ -6,6 +6,7 @@ namespace AppWebSistemaClinica.C3BusinessLogic
 {
     internal class C3BusinessLogicRol
     {
+
         readonly C2AccessGenericGeneric<C1ModelRol> modeloRol = new C2AccessGenericGeneric<C1ModelRol>();
         readonly C2AccessGenericGeneric<C1ModelPerfil> modeloPerfil = new C2AccessGenericGeneric<C1ModelPerfil>();
 

@@ -1,7 +1,4 @@
-﻿@{
-    Layout = ViewData["Layout"]?.ToString() ?? "~/Views/Shared/_LayoutAdmin.cshtml";
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8" />
@@ -12,12 +9,11 @@
     <title>Static Navigation - SB Admin</title>
     <link href="~/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-
 </head>
-<body class="sb-nav-fixed">
+<body>
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" asp-area="" asp-controller="Administrador" asp-action="IndexAdmin" >Welcome Admin</a>
+        <a class="navbar-brand ps-3" href="index.html">Hello</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
@@ -40,18 +36,17 @@
             </li>
         </ul>
     </nav>
-
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link" asp-area="" asp-controller="Administrador" asp-action="IndexAdmin">
-                            indez>
+                        <div class="sb-sidenav-menu-heading">Home</div>
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="IndexAdmin">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Dashboard
+                            Tablero Principal
                         </a>
+                        
                         <div class="sb-sidenav-menu-heading">Interface</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -95,24 +90,29 @@
                                 </div>
                             </nav>
                         </div>
-                        <div class="sb-sidenav-menu-heading">Addons</div>
-                        <a class="nav-link" href="charts.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Charts
-                        </a>
-                        <a class="nav-link" href="tables.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Tables
-                        </a>
+
+                        <div class="sb-sidenav-menu-heading">COMPLEMENTOS</div>
+
+                        <a class="nav-link" asp-area="" asp-controller="Administrador" asp-action="GraficosAdmin">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Gráficos</a>
+                        <a class="nav-link" asp-area="" asp-controller="Administrador" asp-action="TablasAdmin">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>Tablas</a>
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as:</div>
-                    Start Bootstrap
+                    <div class="small">Conectado como:</div>
+                    --Ingrese ususario aquí--
                 </div>
             </nav>
+        </div>
 
+        <div id="layoutSidenav_content">
+
+            <!-- Renderiza todo lo que eta dentro de la etiqueta main -->
             @RenderBody()
+
+
+
 
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">

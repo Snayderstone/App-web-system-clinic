@@ -8,12 +8,24 @@ namespace AppWebSistemaClinica.Controllers
     public class AdministradorController : Controller
     {
 
-        [HttpGet]
-        [Route("Api/[controller]")]
+       
         public IActionResult IndexAdmin()
         {
             return View();
         }
-
+        [HttpGet]
+        [Route("Tablas")]
+        public IActionResult TablasAdmin()
+        {
+            ViewBag.Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+            return View();
+        }
+        [HttpGet]
+        [Route("Gráficos")]
+        public IActionResult GraficosAdmin()
+        {
+            ViewBag.Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+            return View();
+        }
     }
 }

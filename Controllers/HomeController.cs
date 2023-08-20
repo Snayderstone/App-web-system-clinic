@@ -52,12 +52,20 @@ namespace AppWebSistemaClinica.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        //public IActionResult IndexAdmin()
+        //{
+        //    //return View("~/Views/Administrador/IndexAdmin.cshtml");
+        //    // Establecer el diseño específico
+        //    ViewData["Layout"] = "~/Views/Shared/_LayoutAdmin.cshtml";
+        //    return View("~/Views/Administrador/IndexAdmin.cshtml");
+        //}
+
         public IActionResult IndexAdmin()
         {
-            //return View("~/Views/Administrador/IndexAdmin.cshtml");
-            // Establecer el diseño específico
-            ViewData["Layout"] = "~/Views/Shared/_LayoutAdmin.cshtml";
-            return View("~/Views/Administrador/IndexAdmin.cshtml");
+            ViewData["Title"] = "Administración";
+            ViewBag.Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+            return View("~/Views/Administrador/IndexAdmin.cshtml"); // Especificar la ruta completa de la vista
         }
+
     }
 }

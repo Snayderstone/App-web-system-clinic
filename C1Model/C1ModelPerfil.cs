@@ -17,10 +17,6 @@ namespace AppWebSistemaClinica.C1Model
         public int IdRol { get; set; }
         public virtual C1ModelRol C1ModelRol { get; set; }
 
-        [ForeignKey("C1ModelFuncion")]
-        public int IdFuncion { get; set; }
-        public virtual C1ModelFuncion C1ModelFuncion { get; set; }
-
 
     }
 }

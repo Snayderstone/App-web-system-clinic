@@ -19,6 +19,13 @@ namespace AppWebSistemaClinica.C1Model.C1ModelContext
             modelBuilder.Entity<C1ModelEquipoMedicoClinica>().HasKey(x => new { x.IdEquipoMedico, x.IdClinica });
         }
 
+
+        public virtual DbSet<C1ModelUsuario> USUARIOS { get; set; }
+        public virtual DbSet<C1ModelPerfil> PERFILES { get; set; }
+        public virtual DbSet<C1ModelFuncion> FUNCIONES { get; set; }
+        public virtual DbSet<C1ModelRol> ROLES { get; set; }
+
+
         public virtual DbSet<C1ModelCita> CITAS { get; set; }
         public virtual DbSet<C1ModelPago> PAGOS { get; set; }
         public virtual DbSet<C1ModelPaciente> PACIENTES { get; set; }
@@ -30,10 +37,10 @@ namespace AppWebSistemaClinica.C1Model.C1ModelContext
         public virtual DbSet<C1ModelEquipoMedico> EQUIPOSMEDICOS { get; set; }
         public virtual DbSet<C1ModelEquipoMedicoClinica> EQUIPOSMEDICOSCLINICAS { get; set; }
         public virtual DbSet<C1ModelEspecialidad> ESPECIALIDADES { get; set; }
-        public virtual DbSet<C1ModelUsuario> USUARIOS { get; set; }
-        public virtual DbSet<C1ModelPerfil> PERFILES { get; set; }
-        public virtual DbSet<C1ModelRol> ROLES { get; set; }
-        public virtual DbSet<C1ModelFuncion> FUNCIONES { get; set; }
+        
+        
+        
+        
         public virtual DbSet<C1ModelDetalleFactura> DETALLESFACTURAS { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -42,7 +49,7 @@ namespace AppWebSistemaClinica.C1Model.C1ModelContext
             {
                 IConfigurationRoot configuration = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("C:\\Users\\Damián\\Source\\Repos\\AppWebSistemaClinica\\appsettings.json")
+                    .AddJsonFile("Y:\\Proyectos de VS Community\\100 PROYECTOFINAL\\AppWebSistemaClinica\\C1Model\\appsettings.json")
                     .Build();
                 string connectionString = configuration.GetConnectionString("MyConnectionString");
 

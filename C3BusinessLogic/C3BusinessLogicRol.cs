@@ -1,4 +1,5 @@
 ﻿using AppWebSistemaClinica.C1Model;
+using AppWebSistemaClinica.C2DataAccess;
 using AppWebSistemaClinica.C2DataAccess.C2AccessGeneric;
 using Microsoft.Identity.Client;
 
@@ -9,6 +10,9 @@ namespace AppWebSistemaClinica.C3BusinessLogic
 
         readonly C2AccessGenericGeneric<C1ModelRol> modeloRol = new C2AccessGenericGeneric<C1ModelRol>();
         readonly C2AccessGenericGeneric<C1ModelPerfil> modeloPerfil = new C2AccessGenericGeneric<C1ModelPerfil>();
+
+
+        
 
         public void insertarRol(C1ModelRol IdRol)
         {

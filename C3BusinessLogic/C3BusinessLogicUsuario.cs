@@ -1,6 +1,9 @@
 ﻿using AppWebSistemaClinica.C1Model;
+using AppWebSistemaClinica.C2DataAccess;
 using AppWebSistemaClinica.C2DataAccess.C2AccessGeneric;
 using Microsoft.EntityFrameworkCore.Metadata;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace AppWebSistemaClinica.C3BusinessLogic
 {
@@ -9,10 +12,35 @@ namespace AppWebSistemaClinica.C3BusinessLogic
         readonly C2AccessGenericGeneric<C1ModelUsuario> modeloUsuario = new C2AccessGenericGeneric<C1ModelUsuario>();
         readonly C2AccessGenericGeneric<C1ModelPerfil> modeloPerfil = new C2AccessGenericGeneric<C1ModelPerfil>();
 
+
+        private string GenerarHashContraseña(string contraseña)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(contraseña));
+                StringBuilder builder = new StringBuilder();
+
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+
+                return builder.ToString();
+            }
+        }
+
+        private C2DataAccessUsuario userDataAccess = new C2DataAccessUsuario(); // Supongo que tienes una instancia de la capa de acceso a datos aquí.
+        public C1ModelUsuario buscarUsuarioPorCorreo(string correo)
+        {
+            return userDataAccess.BuscarUsuarioPorCorreo(correo);
+        }
+
+
         public void insertarUsuario(C1ModelUsuario IdUsuario)
         {
             try
             {
+                IdUsuario.ContrasenaUsuario = GenerarHashContraseña(IdUsuario.ContrasenaUsuario);
                 // El usuario existe, procede a realizar la insercion
                 modeloUsuario.Add(IdUsuario);
                 modeloUsuario.SaveChanges();
@@ -99,5 +127,6 @@ namespace AppWebSistemaClinica.C3BusinessLogic
         {
             throw new NotImplementedException();
         }
+
     }
 }

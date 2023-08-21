@@ -3,7 +3,6 @@ using AppWebSistemaClinica.C3BusinessLogic;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
 //Conexion
 //builder.Services.AddDbContext<C1ModelContextContexto>(options => 
 //options.UseSqlServer(builder.Configuration.GetConnectionString("MyConnectionString")));

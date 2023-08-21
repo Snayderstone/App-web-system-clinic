@@ -107,7 +107,10 @@ namespace AppWebSistemaClinica.Migrations
                     IdUsuario = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NombreUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ContrasenaUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ApellidoUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CorreoElectronico = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ContrasenaUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FechaRegistro = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -190,18 +193,11 @@ namespace AppWebSistemaClinica.Migrations
                     IdPerfil = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdUsuario = table.Column<int>(type: "int", nullable: false),
-                    IdRol = table.Column<int>(type: "int", nullable: false),
-                    IdFuncion = table.Column<int>(type: "int", nullable: false)
+                    IdRol = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PERFILES", x => x.IdPerfil);
-                    table.ForeignKey(
-                        name: "FK_PERFILES_FUNCIONES_IdFuncion",
-                        column: x => x.IdFuncion,
-                        principalTable: "FUNCIONES",
-                        principalColumn: "IdFuncion",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PERFILES_ROLES_IdRol",
                         column: x => x.IdRol,
@@ -389,11 +385,6 @@ namespace AppWebSistemaClinica.Migrations
                 column: "IdEspecialidad");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PERFILES_IdFuncion",
-                table: "PERFILES",
-                column: "IdFuncion");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_PERFILES_IdRol",
                 table: "PERFILES",
                 column: "IdRol");
@@ -422,6 +413,9 @@ namespace AppWebSistemaClinica.Migrations
                 name: "FACTURAS");
 
             migrationBuilder.DropTable(
+                name: "FUNCIONES");
+
+            migrationBuilder.DropTable(
                 name: "PERFILES");
 
             migrationBuilder.DropTable(
@@ -435,9 +429,6 @@ namespace AppWebSistemaClinica.Migrations
 
             migrationBuilder.DropTable(
                 name: "DETALLESFACTURAS");
-
-            migrationBuilder.DropTable(
-                name: "FUNCIONES");
 
             migrationBuilder.DropTable(
                 name: "ROLES");

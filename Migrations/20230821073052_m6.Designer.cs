@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppWebSistemaClinica.Migrations
 {
     [DbContext(typeof(C1ModelContextContexto))]
-    [Migration("20230813035453_m6")]
+    [Migration("20230821073052_m6")]
     partial class m6
     {
         /// <inheritdoc />
@@ -370,9 +370,6 @@ namespace AppWebSistemaClinica.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPerfil"));
 
-                    b.Property<int>("IdFuncion")
-                        .HasColumnType("int");
-
                     b.Property<int>("IdRol")
                         .HasColumnType("int");
 
@@ -380,8 +377,6 @@ namespace AppWebSistemaClinica.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("IdPerfil");
-
-                    b.HasIndex("IdFuncion");
 
                     b.HasIndex("IdRol");
 
@@ -444,9 +439,20 @@ namespace AppWebSistemaClinica.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdUsuario"));
 
+                    b.Property<string>("ApellidoUsuario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ContrasenaUsuario")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CorreoElectronico")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FechaRegistro")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("NombreUsuario")
                         .IsRequired()
@@ -560,25 +566,17 @@ namespace AppWebSistemaClinica.Migrations
 
             modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelPerfil", b =>
                 {
-                    b.HasOne("AppWebSistemaClinica.C1Model.C1ModelFuncion", "C1ModelFuncion")
-                        .WithMany()
-                        .HasForeignKey("IdFuncion")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("AppWebSistemaClinica.C1Model.C1ModelRol", "C1ModelRol")
-                        .WithMany()
+                        .WithMany("C1ModelPerfil")
                         .HasForeignKey("IdRol")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("AppWebSistemaClinica.C1Model.C1ModelUsuario", "C1ModelUsuario")
-                        .WithMany()
+                        .WithMany("C1ModelPerfil")
                         .HasForeignKey("IdUsuario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("C1ModelFuncion");
 
                     b.Navigation("C1ModelRol");
 
@@ -609,6 +607,16 @@ namespace AppWebSistemaClinica.Migrations
             modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelEquipoMedico", b =>
                 {
                     b.Navigation("C1ModelEquipoMedicoClinica");
+                });
+
+            modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelRol", b =>
+                {
+                    b.Navigation("C1ModelPerfil");
+                });
+
+            modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelUsuario", b =>
+                {
+                    b.Navigation("C1ModelPerfil");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,28 +1,52 @@
 ﻿using AppWebSistemaClinica.C1Model;
+using AppWebSistemaClinica.C2DataAccess;
 using AppWebSistemaClinica.C2DataAccess.C2AccessGeneric;
+using Microsoft.DotNet.Scaffolding.Shared.CodeModifier.CodeChange;
 
 namespace AppWebSistemaClinica.C3BusinessLogic
 {
     internal class C3BusinessLogicPerfil
     {
         readonly C2AccessGenericGeneric<C1ModelPerfil> modeloPerfil = new C2AccessGenericGeneric<C1ModelPerfil>();
-        readonly C2AccessGenericGeneric<C1ModelFuncion> modeloFuncion = new C2AccessGenericGeneric<C1ModelFuncion>();
         readonly C2AccessGenericGeneric<C1ModelRol> modeloRol = new C2AccessGenericGeneric<C1ModelRol>();
         readonly C2AccessGenericGeneric<C1ModelUsuario> modeloUsuario = new C2AccessGenericGeneric<C1ModelUsuario>();
 
 
+        public void insertarRol(C1ModelRol IdRol)
+        {
+            try
+            {
+                // El perfil existe, procede a realizar la insercion
+                modeloRol.Add(IdRol);
+                modeloRol.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                // Se lanza una excepcion en caso de ocuriri algun error en la insercion
+                throw new Exception("Error al insertar el rol");
+            }
+
+        }
+        public void insertarUsuario(C1ModelUsuario IdUsuario)
+        {
+            try
+            {
+                // El usuario existe, procede a realizar la insercion
+                modeloUsuario.Add(IdUsuario);
+                modeloUsuario.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                // Se lanza una excepcion en caso de ocurira algun error en la insercion
+                throw new Exception("Error al insertar el usuario");
+            }
+        }
+
         public void insertarPerfil(C1ModelPerfil IdPerfil)
         {
             // Verifica si el modelo, rol y usuario con el IdPerfil especificado existe
-            bool funcionExiste = modeloFuncion.Exists(c => c.IdFuncion == IdPerfil.IdFuncion);
             bool rolExiste = modeloRol.Exists(c => c.IdRol == IdPerfil.IdRol);
             bool usuarioExiste = modeloUsuario.Exists(c => c.IdUsuario == IdPerfil.IdUsuario);
-
-            if (!funcionExiste)
-            {
-                // Si la funcion no existe, lanza una excepcion con mensaje personalizado
-                throw new ArgumentException("La funcion con el ID especificado no existe. ");
-            }
 
             if (!rolExiste)
             {
@@ -52,16 +76,10 @@ namespace AppWebSistemaClinica.C3BusinessLogic
         public void actualizarPerfil(C1ModelPerfil IdPerfil)
         {
             var perfilExiste = modeloPerfil.GetById(IdPerfil.IdPerfil);
-            bool funcionExiste = modeloFuncion.Exists(c => c.IdFuncion == IdPerfil.IdFuncion);
             bool rolExiste = modeloRol.Exists(c => c.IdRol == IdPerfil.IdRol);
             bool usuarioExiste = modeloUsuario.Exists(c => c.IdUsuario == IdPerfil.IdUsuario);
 
-            if (!funcionExiste)
-            {
-                // Si la funcion no existe, lanza una excepcion con mensaje personalizado
-                throw new ArgumentException("La funcion con el ID especificado no existe. ");
-            }
-
+            
             if (!rolExiste)
             {
                 // Si el rol no existe, lanza una excepcion con mensaje personalizado
@@ -83,7 +101,6 @@ namespace AppWebSistemaClinica.C3BusinessLogic
             try
             {
                 // Actualiza los campos de perfil
-                perfilExiste.IdFuncion = IdPerfil.IdFuncion;
                 perfilExiste.IdRol = IdPerfil.IdRol;
                 perfilExiste.IdUsuario = IdPerfil.IdUsuario;
 

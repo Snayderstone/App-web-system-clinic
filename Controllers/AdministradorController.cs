@@ -5,26 +5,27 @@ namespace AppWebSistemaClinica.Controllers
 {
     [ApiController]
     [Route("Api/[controller]")]
+    [SetAdminLayout] // Aplicar el atributo personalizado aquí
     public class AdministradorController : Controller
     {
-
-       
+        [HttpGet]
+        [Route("Index Admin")]
         public IActionResult IndexAdmin()
         {
             return View();
         }
+
         [HttpGet]
         [Route("Tablas")]
         public IActionResult TablasAdmin()
         {
-            ViewBag.Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
             return View();
         }
+
         [HttpGet]
         [Route("Gráficos")]
         public IActionResult GraficosAdmin()
         {
-            ViewBag.Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
             return View();
         }
     }

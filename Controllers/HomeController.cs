@@ -67,5 +67,18 @@ namespace AppWebSistemaClinica.Controllers
             return View("~/Views/Administrador/IndexAdmin.cshtml"); // Especificar la ruta completa de la vista
         }
 
+        public IActionResult IndexUser()
+        {
+            ViewData["Title"] = "Pacientes";
+            ViewBag.Layout = "~/Views/Shared/_LayoutUser.cshtml";
+            return View("~/Views/Usuario/IndexUser.cshtml"); // Especificar la ruta completa de la vista
+        }
+
+        public IActionResult IndexProf()
+        {
+            ViewData["Title"] = "Profesionales";
+            ViewBag.Layout = "~/Views/Shared/_LayoutProf.cshtml";
+            return View("~/Views/Profesional/IndexProf.cshtml"); // Especificar la ruta completa de la vista
+        }
     }
 }

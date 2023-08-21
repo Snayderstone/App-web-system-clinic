@@ -9,6 +9,7 @@ namespace AppWebSistemaClinica.Controllers
 {
     [ApiController]
     [Route("Api/[controller]")]
+    [SetUserLayout] // Aplicar el atributo personalizado aquí
     public class UsuarioController : Controller
     {
 
@@ -17,6 +18,14 @@ namespace AppWebSistemaClinica.Controllers
         public UsuarioController(C3BusinessLogicUsuario usuarioLogic)
         {
             _usuarioLogic = usuarioLogic;
+        }
+
+
+        [HttpGet]
+        [Route("Index Usuario")]
+        public IActionResult IndexUser()
+        {
+            return View();
         }
 
         [HttpGet]
@@ -110,11 +119,7 @@ namespace AppWebSistemaClinica.Controllers
                 return StatusCode(500, new { message = "Error al eliminar el usuario: " + ex.Message });
             }
         }
-     
-        public IActionResult Index()
-        {
-            return View();
-        }
+
     }
 }
     

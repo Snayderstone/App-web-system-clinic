@@ -9,8 +9,8 @@ namespace AppWebSistemaClinica.C3BusinessLogic
 {
     public class C3BusinessLogicUsuario
     {
-        readonly C2AccessGenericGeneric<C1ModelUsuario> modeloUsuario = new C2AccessGenericGeneric<C1ModelUsuario>();
-        readonly C2AccessGenericGeneric<C1ModelPerfil> modeloPerfil = new C2AccessGenericGeneric<C1ModelPerfil>();
+        readonly C2AccessGenericIGeneric<C1ModelUsuario> modeloUsuario = new C2AccessGenericGeneric<C1ModelUsuario>();
+        readonly C2AccessGenericIGeneric<C1ModelPerfil> modeloPerfil = new C2AccessGenericGeneric<C1ModelPerfil>();
 
 
         private string GenerarHashContraseña(string contraseña)

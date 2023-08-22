@@ -46,12 +46,30 @@
                                                 <label for="inputPasswordConfirm">Confirma la Contraseña</label>
                                             </div>
                                         </div>
+
                                     </div>
+
+                                    <div class="form-floating mb-3">
+                                       
+                                        <select asp-for="IdRolSeleccionado" class="form-select" id="inputRol">
+                                            <option value="0">Selecciona un Rol</option>
+                                            @foreach (var item in ViewBag.RolesDisponibles)
+                                            {
+                                                <option value="@item.Value">@item.Text</option>
+                                            }
+                                        </select>
+                                        <span asp-validation-for="IdRolSeleccionado" class="text-danger"></span> <!-- Agrega esta línea -->
+                                        <label for="inputRol">Selecciona un Rol</label>
+
+                                    </div>
+
+
                                     <div class="mt-4 mb-0">
                                         <div class="d-grid">
                                             <button type="submit" class="btn btn-primary btn-block" asp-area="" asp-controller="Home" asp-action="Registro">Crear Cuenta</button>
                                         </div>
                                     </div>
+                                    
                                 </form>
                             </div>
                             <div class="card-footer text-center py-3">

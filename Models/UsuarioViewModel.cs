@@ -1,4 +1,5 @@
-﻿using AppWebSistemaClinica.Controllers;
+﻿using AppWebSistemaClinica.C1Model;
+using AppWebSistemaClinica.Controllers;
 using System.ComponentModel.DataAnnotations;
 
 namespace AppWebSistemaClinica.Models
@@ -33,6 +34,11 @@ namespace AppWebSistemaClinica.Models
         [DataType(DataType.Password)]
         [Display(Name = "Repita la contraseña")]
         public string ConfirmacionContrasena { get; set; }
+
+
+        [RequiredIfNonZero(ErrorMessage = "Debe seleccionar un rol.")]
+        [Display(Name = "Rol")]
+        public int IdRolSeleccionado { get; set; }
 
         public UsuarioViewModel()
         {

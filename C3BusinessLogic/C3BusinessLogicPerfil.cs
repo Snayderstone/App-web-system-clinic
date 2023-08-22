@@ -5,42 +5,11 @@ using Microsoft.DotNet.Scaffolding.Shared.CodeModifier.CodeChange;
 
 namespace AppWebSistemaClinica.C3BusinessLogic
 {
-    internal class C3BusinessLogicPerfil
+    public class C3BusinessLogicPerfil
     {
-        readonly C2AccessGenericGeneric<C1ModelPerfil> modeloPerfil = new C2AccessGenericGeneric<C1ModelPerfil>();
-        readonly C2AccessGenericGeneric<C1ModelRol> modeloRol = new C2AccessGenericGeneric<C1ModelRol>();
-        readonly C2AccessGenericGeneric<C1ModelUsuario> modeloUsuario = new C2AccessGenericGeneric<C1ModelUsuario>();
-
-
-        public void insertarRol(C1ModelRol IdRol)
-        {
-            try
-            {
-                // El perfil existe, procede a realizar la insercion
-                modeloRol.Add(IdRol);
-                modeloRol.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                // Se lanza una excepcion en caso de ocuriri algun error en la insercion
-                throw new Exception("Error al insertar el rol");
-            }
-
-        }
-        public void insertarUsuario(C1ModelUsuario IdUsuario)
-        {
-            try
-            {
-                // El usuario existe, procede a realizar la insercion
-                modeloUsuario.Add(IdUsuario);
-                modeloUsuario.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                // Se lanza una excepcion en caso de ocurira algun error en la insercion
-                throw new Exception("Error al insertar el usuario");
-            }
-        }
+        readonly C2AccessGenericIGeneric<C1ModelPerfil> modeloPerfil = new C2AccessGenericGeneric<C1ModelPerfil>();
+        readonly C2AccessGenericIGeneric<C1ModelRol> modeloRol = new C2AccessGenericGeneric<C1ModelRol>();
+        readonly C2AccessGenericIGeneric<C1ModelUsuario> modeloUsuario = new C2AccessGenericGeneric<C1ModelUsuario>();
 
         public void insertarPerfil(C1ModelPerfil IdPerfil)
         {
@@ -167,6 +136,10 @@ namespace AppWebSistemaClinica.C3BusinessLogic
             }
 
         }
+
+
+        
+
 
     }
 }

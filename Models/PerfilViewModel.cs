@@ -13,9 +13,5 @@ namespace AppWebSistemaClinica.Models
         [Required(ErrorMessage = "El ID de Rol es requerido.")]
         [Display(Name = "ID de Rol")]
         public int IdRol { get; set; }
-
-        [Required(ErrorMessage = "El ID de Función es requerido.")]
-        [Display(Name = "ID de Función")]
-        public int IdFuncion { get; set; }
     }
 }

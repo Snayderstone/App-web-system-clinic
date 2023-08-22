@@ -16,6 +16,8 @@ builder.Services.AddDbContext<C1ModelContextContexto>(options =>
 
 // Inicializacion de inyeccion de dependencia 
 builder.Services.AddScoped<C3BusinessLogicUsuario>();
+builder.Services.AddScoped<C3BusinessLogicRol>();
+builder.Services.AddScoped<C3BusinessLogicPerfil>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 var app = builder.Build();

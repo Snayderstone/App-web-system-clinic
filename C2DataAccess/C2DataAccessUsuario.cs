@@ -6,10 +6,7 @@ namespace AppWebSistemaClinica.C2DataAccess
 {
     internal class C2DataAccessUsuario : C2AccessGenericGeneric<C2DataAccessUsuario>
     {
-
-        //EF_FIRST_CODE_CONSOLE
-
-       // nuevo contexto para el metodo propio para color
+       // nuevo contexto para el metodo propio para CORREO
         public C1ModelContextContexto contexto2 = new C1ModelContextContexto();
 
         public C1ModelUsuario BuscarUsuarioPorCorreo(string correoUser)

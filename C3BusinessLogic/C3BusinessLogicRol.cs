@@ -5,14 +5,11 @@ using Microsoft.Identity.Client;
 
 namespace AppWebSistemaClinica.C3BusinessLogic
 {
-    internal class C3BusinessLogicRol
+    public class C3BusinessLogicRol
     {
 
-        readonly C2AccessGenericGeneric<C1ModelRol> modeloRol = new C2AccessGenericGeneric<C1ModelRol>();
-        readonly C2AccessGenericGeneric<C1ModelPerfil> modeloPerfil = new C2AccessGenericGeneric<C1ModelPerfil>();
-
-
-        
+        readonly C2AccessGenericIGeneric<C1ModelRol> modeloRol = new C2AccessGenericGeneric<C1ModelRol>();
+        readonly C2AccessGenericIGeneric<C1ModelPerfil> modeloPerfil = new C2AccessGenericGeneric<C1ModelPerfil>();
 
         public void insertarRol(C1ModelRol IdRol)
         {

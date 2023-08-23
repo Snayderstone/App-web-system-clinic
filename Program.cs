@@ -1,8 +1,12 @@
 using AppWebSistemaClinica.C1Model.C1ModelContext;
 using AppWebSistemaClinica.C3BusinessLogic;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie();
+
 //Conexion
 //builder.Services.AddDbContext<C1ModelContextContexto>(options => 
 //options.UseSqlServer(builder.Configuration.GetConnectionString("MyConnectionString")));

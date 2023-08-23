@@ -88,6 +88,7 @@ namespace AppWebSistemaClinica.Controllers
                 {
                     ModelState.AddModelError(string.Empty, "Error al crear el cliente: " + ex.Message);
                 }
+
             }
             // Obtén nuevamente la lista de roles disponibles y agrégala a la ViewBag
             ViewBag.RolesDisponibles = new SelectList(_rolLogic.imprimirRoles(), "IdRol", "NombreRol");
@@ -102,34 +103,73 @@ namespace AppWebSistemaClinica.Controllers
             return View();
         }
 
-
-
-
-
-        // get para traer y validar los datos que escribio el user
         [HttpGet]
         [Route("Acceso")]
         public IActionResult Acceso()
         {
-            return View();
+            return View(new AccesoViewModel()); // Devuelve la vista con un modelo en blanco para el formulario
         }
-        // Pst para mandar los camp escrito por los user
+
         [HttpPost]
         [Route("Acceso")]
-        public IActionResult Acceso1()
+        public IActionResult Acceso(AccesoViewModel loginModel)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var usuario = _usuarioLogic.buscarUsuarioPorCorreo(loginModel.CorreoElectronico);
+
+                    if (usuario != null && usuario.ContrasenaUsuario == _usuarioLogic.GenerarHashContraseña(loginModel.ContrasenaUsuario))
+                    {
+
+                        // Realiza la autenticación exitosa y las acciones necesarias
+                        // Ejemplo: Establecer una sesión de usuario o controlar el numero de intentos de la contraseña
+
+                        var perfiles = _perfilLogic.obtenerUsuariosPerfilesRolesEager();
+                        var perfilUsuario = perfiles.FirstOrDefault(p => p.C1ModelUsuario.IdUsuario == usuario.IdUsuario);
+
+                        if (perfilUsuario != null && perfilUsuario.C1ModelRol != null)
+                        {
+                            var nombreRol = perfilUsuario.C1ModelRol.NombreRol;
+                            switch (nombreRol)
+                            {
+                                case "Administrador":
+                                    return RedirectToAction("IndexAdmin", "Home");
+                                case "Usuario":
+                                    return RedirectToAction("IndexUser", "Home");
+                     
+                                case "Profesional":
+                                    return RedirectToAction("IndexProf", "Home");
+                                default:
+                                    return RedirectToAction("IndexOtro", "Home");
+                            }
+                        }
+                        else
+                        {
+                            return RedirectToAction("IndexOtro", "Home");
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Credenciales inválidas.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError(string.Empty, "Error en el inicio de sesión: " + ex.Message);
+                }
+            }
+
+            return View(loginModel);
+        }
+
+        [HttpGet]
+        [Route("AccesoExitoso")]
+        public IActionResult AccesoExitoso()
         {
             return View();
         }
-
-
-
-
-
-
-
-
-
-
 
         public IActionResult IndexAdmin()
         {
@@ -152,6 +192,12 @@ namespace AppWebSistemaClinica.Controllers
             return View("~/Views/Profesional/IndexProf.cshtml"); // Especificar la ruta completa de la vista
         }
 
+        public IActionResult IndexOtro()
+        {
+            ViewData["Title"] = "Otro";
+            ViewBag.Layout = "~/Views/Shared/_LayoutOtro.cshtml";
+            return View("~/Views/Otro/IndexOtro.cshtml"); // Especificar la ruta completa de la vista
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

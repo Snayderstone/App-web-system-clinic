@@ -10,19 +10,23 @@ namespace AppWebSistemaClinica.C3BusinessLogic
     public class C3BusinessLogicUsuario
     {
         readonly C2AccessGenericIGeneric<C1ModelUsuario> modeloUsuario = new C2AccessGenericGeneric<C1ModelUsuario>();
-        readonly C2AccessGenericIGeneric<C1ModelPerfil> modeloPerfil = new C2AccessGenericGeneric<C1ModelPerfil>();
 
-
-        private string GenerarHashContraseña(string contraseña)
+        public string GenerarHashContraseña(string contraseña)
         {
+            if (string.IsNullOrEmpty(contraseña)) // Verifica si la contraseña es nula o vacía
+            {
+                throw new ArgumentException("La contraseña no puede ser nula ni vacía.", nameof(contraseña));
+            }
+
             using (SHA256 sha256 = SHA256.Create())
             {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(contraseña));
+                byte[] bytes = Encoding.UTF8.GetBytes(contraseña);
+                byte[] hash = sha256.ComputeHash(bytes);
                 StringBuilder builder = new StringBuilder();
 
-                for (int i = 0; i < bytes.Length; i++)
+                for (int i = 0; i < hash.Length; i++)
                 {
-                    builder.Append(bytes[i].ToString("x2"));
+                    builder.Append(hash[i].ToString("x2"));
                 }
 
                 return builder.ToString();

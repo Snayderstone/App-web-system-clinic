@@ -1,48 +1,78 @@
-﻿
-        <div id="layoutAuthentication">
-            <div id="layoutAuthentication_content">
-                <main>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-5">
-
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                            <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
-                                    <div class="card-body">
-                                        <form>
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
-                                                <label for="inputEmail">Corre</label>
-                                            </div>
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputPassword" type="password" placeholder="Password" />
-                                                <label for="inputPassword">Contraseña</label>
-                                            </div>
-                                            <div class="form-check mb-3">
-                                                <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
-                                                <label class="form-check-label" for="inputRememberPassword">Recordar la contraseña</label>
-                                            </div>
+﻿@model AppWebSistemaClinica.Models.AccesoViewModel
+<html>
+<head>
+    <!-- Otras etiquetas head -->
+    <!-- Referencia a FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+<body>
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-5">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                                <div class="card-body">
+                                    <form asp-controller="Home" asp-action="Acceso" method="post">
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="CorreoElectronico" class="form-control" placeholder="name@example.com" />
+                                            <span asp-validation-for="CorreoElectronico" class="text-danger"></span>
+                                            <label for="CorreoElectronico">Correo</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input  asp-for="ContrasenaUsuario" class="form-control" type="password" placeholder="Password"/>
+                                            
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="recuperarcontraseña">¿Olvidó su contraseña?</a>
-                                                <a class="btn btn-primary" href="tabla">Ingrear</a>
+                                              <span asp-validation-for="ContrasenaUsuario" class="text-danger"></span>
+                                                <i id="showPasswordIcon" class="fas fa-eye-slash show-password-icon"></i>
                                             </div>
-                                        </form>
-                                    </div>
-                                    <div class="card-footer text-center py-3">
+                                            <label for="ContrasenaUsuario">Contraseña</label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
+                                            <label class="form-check-label" for="inputRememberPassword">Recordar la contraseña</label>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                            <a class="small" href="recuperarcontraseña">¿Olvidó su contraseña?</a>
+                                            <button type="submit" class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Acceso">Ingresar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="card-footer text-center py-3">
                                     ¿No tienes cuenta?
                                     <div class="big">
-                                    <a asp-area="" asp-controller="Home" asp-action="Registro">Registrate</a>
-                                    </div>
-
+                                        <a asp-area="" asp-controller="Home" asp-action="Registro">Regístrate</a>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-                </main>
-
-            </div>
+                </div>
+            </main>
         </div>
-        <script src="~/js/scripts.js"></script>
+    </div>
 
+    <script src="~/js/scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const passwordInput = document.querySelector('#ContrasenaUsuario');
+            const showPasswordIcon = document.querySelector('#showPasswordIcon');
+
+            showPasswordIcon.addEventListener('click', function () {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    showPasswordIcon.classList.remove('fa-eye-slash');
+                    showPasswordIcon.classList.add('fa-eye');
+                } else {
+                    passwordInput.type = 'password';
+                    showPasswordIcon.classList.remove('fa-eye');
+                    showPasswordIcon.classList.add('fa-eye-slash');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -12,9 +12,8 @@ namespace AppWebSistemaClinica.C1Model
         public string EstadoPagoFactura { get; set; }
         public DateTime FechaFactura { get; set; }
 
-        [ForeignKey("C1ModelDetalleFactura")]
-        public int IdDetalleFactura { get; set; }
-        public virtual C1ModelDetalleFactura? C1ModelDetalleFactura { get; set; }
+        [Required]
+        public virtual ICollection<C1ModelDetalleFactura> C1ModelDetalleFacturas { get; set; }      
 
     }
 }

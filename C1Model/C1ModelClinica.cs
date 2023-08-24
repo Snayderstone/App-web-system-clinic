@@ -13,9 +13,8 @@ namespace AppWebSistemaClinica.C1Model
         public string UbicacionClinica { get; set; }
         public decimal PrecioConsultaClinica { get; set; }
 
-        [ForeignKey("C1ModelMedico")]
-        public int IdMedico { get; set; }
-        public virtual C1ModelMedico? C1ModelMedico { get; set; }
+        [Required]
+        public virtual ICollection<C1ModelCita> C1ModelCitas { get; set; }
 
         [Required]
         public virtual ICollection<C1ModelEquipoMedicoClinica> C1ModelEquipoMedicoClinica { get; set; } = new List<C1ModelEquipoMedicoClinica>();

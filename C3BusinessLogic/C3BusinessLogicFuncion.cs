@@ -5,8 +5,8 @@ namespace AppWebSistemaClinica.C3BusinessLogic
 {
     internal class C3BusinessLogicFuncion
     {
-        readonly C2AccessGenericGeneric<C1ModelPerfil> modeloPerfil = new C2AccessGenericGeneric<C1ModelPerfil>();
-        readonly C2AccessGenericGeneric<C1ModelFuncion> modeloFuncion = new C2AccessGenericGeneric<C1ModelFuncion>();
+        readonly C2AccessGenericIGeneric<C1ModelPerfil> modeloPerfil = new C2AccessGenericGeneric<C1ModelPerfil>();
+        readonly C2AccessGenericIGeneric<C1ModelFuncion> modeloFuncion = new C2AccessGenericGeneric<C1ModelFuncion>();
 
         public void insertarFuncion(C1ModelFuncion IdFuncion)
         {
@@ -26,6 +26,13 @@ namespace AppWebSistemaClinica.C3BusinessLogic
         public void actualizarFuncion(C1ModelFuncion IdFuncion)
         {
             var funcionExiste = modeloFuncion.GetById(IdFuncion.IdFuncion);
+
+            if (funcionExiste == null)
+            {
+                // Si el usuario no existe, lanza una excepcion con mensaje personalizado
+                throw new ArgumentException("La funcion con el ID especificado no existe. ");
+            }
+
             try
             {
                 // Actualiza los campos de funcion
@@ -42,7 +49,7 @@ namespace AppWebSistemaClinica.C3BusinessLogic
             }
         }
 
-        public void eliminarFuncion(int IdFuncion) 
+        public void eliminarFuncion(int IdFuncion)
         {
             try
             {

@@ -17,5 +17,8 @@ namespace AppWebSistemaClinica.C1Model
         public string CorreoPaciente { get; set; }
         public string EstadoCivilPaciente { get; set; }
 
+        [Required]
+        public virtual ICollection<C1ModelFactura> C1ModelFacturas { get; set; }    
+
     }
 }

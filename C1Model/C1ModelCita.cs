@@ -17,14 +17,8 @@ namespace AppWebSistemaClinica.C1Model
         public int IdMedico { get; set; }
         public virtual C1ModelMedico? C1ModelMedico { get; set; }
 
-        [ForeignKey("C1ModelDetalleFactura")]
-        public int IdDetalleFactura { get; set; }
-        public virtual C1ModelDetalleFactura? C1ModelDetalleFactura { get; set; }
+        [Required]
+        public virtual ICollection<C1ModelDetalleFactura> C1ModelDetalleFacturas { get; set; }  
 
-
-        [ForeignKey("C1ModelPaciente")]
-        public int IdPaciente { get; set; }
-        public virtual C1ModelPaciente? C1ModelPaciente { get; set; }
-        
     }
 }

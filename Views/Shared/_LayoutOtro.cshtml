@@ -2,6 +2,22 @@
 <html>
 <head>
     <title>@ViewData["Title"] - Otro</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AppWebSistemaClinica.styles.css" asp-append-version="true" />
+
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="Plantilla web Responsive de Medizin, Plantillas web Bootstrap, Plantillas web planas, Plantilla web compatible con Android, Plantilla web compatible con teléfonos inteligentes, diseños web gratuitos para Nokia, Samsung, LG, SonyEricsson, diseño web de Motorola" />
+
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
     <!-- Aquí incluye tus estilos y scripts comunes -->
 </head>
 <body>
@@ -19,5 +35,10 @@
     <footer>
         <!-- Pie de página común -->
     </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

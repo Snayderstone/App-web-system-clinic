@@ -1,9 +1,28 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Usuario</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AppWebSistemaClinica</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AppWebSistemaClinica.styles.css" asp-append-version="true" />
+
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="Plantilla web Responsive de Medizin, Plantillas web Bootstrap, Plantillas web planas, Plantilla web compatible con Android, Plantilla web compatible con teléfonos inteligentes, diseños web gratuitos para Nokia, Samsung, LG, SonyEricsson, diseño web de Motorola" />
+    
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+
+
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
@@ -85,6 +104,9 @@
             }
         }
     </script>
-
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

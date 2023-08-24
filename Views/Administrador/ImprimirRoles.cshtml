@@ -1,0 +1,87 @@
+﻿@model List<RolViewModel>
+@{
+    Layout = ViewBag.Layout; // Establecer el diseño utilizando la variable ViewBag.Layout
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Roles - SB Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="~/css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+    .w3-btn {width:150px;}
+    </style>
+</head>
+<body class="sb-nav-fixed">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4"> Tabla de Roles</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a asp-area="" asp-controller="Administrador" asp-action="IndexAdmin">Panel</a></li>
+                <li class="breadcrumb-item active">Roles</li>
+            </ol>
+            <div class="card mb-4">
+                <div class="card-body">
+                    En esta sección, puedes explorar la lista de perfiles disponibles en el sistema. 
+                    Los perfiles son conjuntos predefinidos de permisos y configuraciones que determinan la funcionalidad y el acceso que un usuario tiene en la aplicación. 
+                    Cada perfil tiene un nombre que lo identifica y una descripción que proporciona más detalles sobre su propósito y alcance.
+                    Tambien podras modificar el perfil con los botones de control. 
+                    <a target="_blank" href="https://github.com/Snayderstone/AppWebSistemaClinica">Más Información.</a>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <a class="w3-button w3-green w3-round-xlarge" asp-area="" asp-controller="Administrador" asp-action="CrearRol">Crear Roles</a>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Roles
+                </div>
+                <div class="card-body">
+                    <table id="datatablesSimple" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var rol in Model)
+                            {
+                                <tr>
+                                    <td>@rol.IdRol</td>
+                                    <td>@rol.NombreRol</td>
+                                    <td>@rol.DescripcionRol</td>
+
+                                    <td>
+                                        <a class="w3-button w3-blue w3-round-xlarge" asp-area="" asp-controller="Administrador" asp-action="EditarRol">Editar</a>
+                                        <a class="w3-button w3-red w3-round-xlarge" asp-area="" asp-controller="Administrador" asp-action="EliminarRol">Eliminar</a>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="~/js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="~/js/datatables-simple-demo.js"></script>
+</body>
+</html>

@@ -98,61 +98,110 @@ namespace AppWebSistemaClinica.Controllers
                     ModelState.AddModelError(string.Empty, "Error al crear el rol: " + ex.Message);
                 }
             }
-            return View("~/Views/Administrador/CrearRol.cshtml", rolViewModel);
+            return View(rolViewModel);
         }
 
+        //[HttpGet]
+        //[Route("Rol/Editar/{id}")]
+        //public IActionResult EditarRol(int id)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            // Obtener el rol por su ID
+        //            C1ModelRol rolModel = _rolLogic.buscarRolPorId(id);
+        //            // Convertir el modelo a un ClienteViewModel
+        //            RolViewModel rolViewModel = new()
+        //            {
+        //                IdRol = rolModel.IdRol,
+        //                NombreRol = rolModel.NombreRol,
+        //                DescripcionRol = rolModel.DescripcionRol,
+        //            };
 
+        //            return View("EditarRol", rolViewModel);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            // Manejar el error adecuadamente
+        //            ModelState.AddModelError(string.Empty, "Error al buscar el cliente por su id: " + ex.Message);
+        //        }
+        //    }
+        //    return RedirectToAction("ImprimirRoles");
+        //}
+
+        //[HttpPost]
+        //[Route("EditarRol")]
+        //public IActionResult EditarRol([FromForm] RolViewModel rolViewModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+
+        //            var rolModel = new C1ModelRol
+        //            {
+        //                IdRol = rolViewModel.IdRol,
+        //                NombreRol = rolViewModel.NombreRol,
+        //                DescripcionRol = rolViewModel.DescripcionRol,
+        //            };
+
+        //            _rolLogic.actualizarRol(rolModel);
+
+        //            return RedirectToAction("ImprimirRoles");
+        //        }
+
+        //        catch (Exception ex)
+        //        {
+        //            ModelState.AddModelError(string.Empty, "Error al actualizar el rol: " + ex.Message);
+        //        }
+        //    }
+
+        //    return View(rolViewModel);
+        //}
         [HttpGet]
         [Route("Rol/Editar/{id}")]
         public IActionResult EditarRol(int id)
         {
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    // Obtener el rol por su ID
-                    C1ModelRol rolModel = _rolLogic.buscarRolPorId(id);
+                var rolModel = _rolLogic.buscarRolPorId(id);
 
-                    // Convertir el modelo a un ClienteViewModel
-                    RolViewModel rolViewModel = new RolViewModel
-                    {
-                        IdRol = rolModel.IdRol,
-                        NombreRol = rolModel.NombreRol,
-                        DescripcionRol = rolModel.DescripcionRol,
-                    };
-
-                    return View("EditarRol", rolViewModel);
-                }
-                catch (Exception ex)
+                var rolViewModel = new RolViewModel
                 {
-                    // Manejar el error adecuadamente
-                    ModelState.AddModelError(string.Empty, "Error al buscar el cliente por su id: " + ex.Message);
-                }
+                    IdRol = rolModel.IdRol,
+                    NombreRol = rolModel.NombreRol,
+                    DescripcionRol = rolModel.DescripcionRol
+                };
+
+                return View(rolViewModel);
             }
-            return RedirectToAction("ImprimirRoles");
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Error al buscar el rol: " + ex.Message);
+                return RedirectToAction("ImprimirRoles");
+            }
         }
 
         [HttpPost]
-        [Route("EditarRol")]
-        public IActionResult EditarRol(RolViewModel rolViewModel)
+        [Route("Rol/Editar/{id}")]
+        public IActionResult EditarRol(int id, [FromForm] RolViewModel rolViewModel)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-
                     var rolModel = new C1ModelRol
                     {
                         IdRol = rolViewModel.IdRol,
                         NombreRol = rolViewModel.NombreRol,
-                        DescripcionRol = rolViewModel.DescripcionRol,
+                        DescripcionRol = rolViewModel.DescripcionRol
                     };
 
                     _rolLogic.actualizarRol(rolModel);
 
                     return RedirectToAction("ImprimirRoles");
                 }
-
                 catch (Exception ex)
                 {
                     ModelState.AddModelError(string.Empty, "Error al actualizar el rol: " + ex.Message);
@@ -161,9 +210,8 @@ namespace AppWebSistemaClinica.Controllers
 
             return View(rolViewModel);
         }
-
-
-        [HttpGet]
+    
+    [HttpGet]
         [Route("EliminarRol/{id}")]
         public IActionResult EliminarRol(int id)
         {

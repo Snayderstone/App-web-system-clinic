@@ -67,10 +67,9 @@
                                     <td>@rol.DescripcionRol</td>
 
                                     <td>
-                                        <a class="w3-button w3-blue w3-round-xlarge" asp-area="" asp-controller="Administrador" asp-action="EditarRol">Editar</a>
-                                        <a class="w3-button w3-red w3-round-xlarge" asp-area="" asp-controller="Administrador" asp-action="EliminarRol">Eliminar</a>
+                                        <a class="w3-button w3-blue w3-round-xlarge" asp-route-id="@rol.IdRol"  asp-controller="Administrador" asp-action="EditarRol">Editar</a>
+                                        <a class="w3-button w3-red w3-round-xlarge" asp-route-id="@rol.IdRol" asp-controller="Administrador" asp-action="EliminarRol">Eliminar</a>
                                     </td>
-
                                 </tr>
                             }
                         </tbody>

@@ -1,1 +1,57 @@
-﻿
+﻿@{
+    Layout = ViewBag.Layout; // Establecer el diseño utilizando la variable ViewBag.Layout
+    ViewBag.Title = "Editar Rol";
+
+}
+@model AppWebSistemaClinica.Models.RolViewModel
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="~/css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        .w3-btn {
+            width: 150px;
+        }
+    </style>
+</head>
+<body class="sb-nav-fixed">
+    <main>
+        <div class="container-fluid px-4">
+
+            <form asp-controller="Administrador" asp-action="EditarRol" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
+                <input type="hidden" asp-for="IdRol" />
+                <h2 class="w3-center">Editar Rol</h2>
+                <div class="w3-row w3-section">
+                    <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-pencil"></i></div>
+                    <div class="w3-rest">
+                        <label asp-for="NombreRol">Nuevo nombre: </label>
+                        <input asp-for="NombreRol" class="w3-input w3-border" name="NombreRol" type="text" placeholder="Nuevo Nombre">
+                        <span asp-validation-for="NombreRol" class="text-danger"></span>
+
+                    </div>
+                </div>
+
+                <div class="w3-row w3-section">
+                    <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-pencil"></i></div>
+                    <div class="w3-rest">
+                        <label asp-for="DescripcionRol">Nueva Descripción: </label>
+                        <input asp-for="DescripcionRol" class="w3-input w3-border" name="DescripcionRol" type="text" placeholder="Nueva Descripción">
+                        <span asp-validation-for="DescripcionRol" class="text-danger"></span>
+
+                    </div>
+                </div>
+                <button class="w3-button w3-block w3-section w3-green w3-round-xlarge" type="submit"
+                        asp-controller="Administrador" asp-action="EditarRol" method="post">
+                    Guardar
+                </button>
+                <a asp-controller="Administrador" asp-action="ImprimirRoles" class="w3-button w3-block w3-section w3-red w3-round-xlarge">Cancelar</a>
+            </form>
+
+        </div>
+    </main>
+</body>
+</html>

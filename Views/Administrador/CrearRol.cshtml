@@ -15,8 +15,6 @@
             width: 150px;
         }
     </style>
-
-
 </head>
 <body class="sb-nav-fixed">
     <main>
@@ -28,19 +26,21 @@
                 <div class="w3-row w3-section">
                     <div class="w3-col" style="width:50px"></div>
                     <div class="w3-rest">
-                        <input class="w3-input w3-border" name="NombreRol" type="text" placeholder="Nombre" asp-for="NombreRol">
                         <span class="text-danger" asp-validation-for="NombreRol"></span>
+                        <input class="w3-input w3-border" name="NombreRol" type="text" placeholder="Nombre" asp-for="NombreRol">
                     </div>
                 </div>
 
                 <div class="w3-row w3-section">
                     <div class="w3-col" style="width:50px"></div>
                     <div class="w3-rest">
-                        <input class="w3-input w3-border" name="DescripcionRol" type="text" placeholder="Descripción" asp-for="DescripcionRol">
                         <span class="text-danger" asp-validation-for="DescripcionRol"></span>
+                        <input class="w3-input w3-border" name="DescripcionRol" type="text" placeholder="Descripción" asp-for="DescripcionRol">
                     </div>
                 </div>
-                <button class="w3-button w3-block w3-section w3-green w3-round-xlarge" type="submit">Guardar</button>
+
+                <button class="w3-button w3-block w3-section w3-green w3-round-xlarge" type="submit" 
+                asp-controller="Administrador" asp-action="CrearRol">Guardar</button>
                 <a asp-controller="Administrador" asp-action="ImprimirRoles" class="w3-button w3-block w3-section w3-red w3-round-xlarge">Cancelar</a>
             </form>
 

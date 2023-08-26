@@ -4,6 +4,7 @@ using AppWebSistemaClinica.C1Model.C1ModelContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppWebSistemaClinica.Migrations
 {
     [DbContext(typeof(C1ModelContextContexto))]
-    partial class C1ModelContextContextoModelSnapshot : ModelSnapshot
+    [Migration("20230826202253_m666")]
+    partial class m666
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

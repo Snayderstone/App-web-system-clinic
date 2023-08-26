@@ -10,10 +10,10 @@ namespace AppWebSistemaClinica.C1Model
         public int idPaciente { get; set; }
         public string NombrePaciente { get; set; }
         public string ApellidoPaciente { get; set; }
-        public int CedulaPaciente { get; set; }
+        public string CedulaPaciente { get; set; }
         public DateTime FechaNacimientoPaciente { get; set; }
         public int EdadPaciente { get; set; }
-        public int TelefonoPaciente { get; set;}
+        public string TelefonoPaciente { get; set;}
         public string CorreoPaciente { get; set; }
         public string EstadoCivilPaciente { get; set; }
 

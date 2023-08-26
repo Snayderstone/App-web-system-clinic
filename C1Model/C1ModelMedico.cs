@@ -10,7 +10,7 @@ namespace AppWebSistemaClinica.C1Model
         public int IdMedico { get; set; }
         public string NombreMedico { get; set; }
         public string ApellidoMedico { get; set; }
-        public int TelefonoMedico { get; set; }
+        public string TelefonoMedico { get; set; }
         public string CorreoMedico { get; set; }
         public string HorarioMedico { get; set; }
 

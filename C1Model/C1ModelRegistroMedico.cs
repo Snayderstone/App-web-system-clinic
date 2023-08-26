@@ -11,7 +11,7 @@ namespace AppWebSistemaClinica.C1Model
         public string DetallesRegistroMedico { get; set; }
 
         [ForeignKey("C1HistorialClinico")]
-        public int HistoriaCliente { get; set; }
+        public int IdHistorialClinico { get; set; }
         public virtual C1ModelHistorialClinico C1ModelHistorialClinico { get; set; }        
 
     }

@@ -5,11 +5,13 @@ namespace AppWebSistemaClinica.C3BusinessLogic
 {
     internal class C3BusinessLogicFactura
     {
-      
+
+        readonly C2AccessGenericIGeneric<C1ModelPago> modeloPago = new C2AccessGenericGeneric<C1ModelPago>();
         readonly C2AccessGenericIGeneric<C1ModelFactura> modeloFactura = new C2AccessGenericGeneric<C1ModelFactura>();
 
         public void insertarFactura(C1ModelFactura IdFactura)
         {
+            bool pagoExiste = modeloPago.Exists(c => c.IdPago == IdFactura.IdPago);
             try
             {
                 modeloFactura.Add(IdFactura);
@@ -24,7 +26,12 @@ namespace AppWebSistemaClinica.C3BusinessLogic
         public void actualizarFactura(C1ModelFactura IdFactura)
         {
             var facturaExiste = modeloFactura.GetById(IdFactura.IdFactura);
+            bool pagoExiste = modeloPago.Exists(c => c.IdPago == IdFactura.IdPago);
 
+            if (!pagoExiste)
+            {
+                throw new ArgumentException("El pago con el ID especificado no existe. ");
+            }
             if (facturaExiste == null)
             {
                 throw new ArgumentException("La factura con el ID especificado no existe. ");
@@ -36,6 +43,7 @@ namespace AppWebSistemaClinica.C3BusinessLogic
                 facturaExiste.MontoTotalFctura = IdFactura.MontoTotalFctura;
                 facturaExiste.EstadoPagoFactura = IdFactura.EstadoPagoFactura;
                 facturaExiste.FechaFactura = IdFactura.FechaFactura;
+                facturaExiste.IdPago = IdFactura.IdPago;
 
                 modeloFactura.Update(facturaExiste);
                 modeloFactura.SaveChanges();
@@ -71,6 +79,7 @@ namespace AppWebSistemaClinica.C3BusinessLogic
             try
             {
                 var facturaExiste = modeloFactura.GetById(IdFactura);
+
 
                 if (facturaExiste == null)
                 {

@@ -34,6 +34,7 @@ namespace AppWebSistemaClinica.C3BusinessLogic
             {
                 especialidadExiste.IdEspecialidad = IdEspecialidad.IdEspecialidad;
                 especialidadExiste.DescripcionEspecialidad = IdEspecialidad.DescripcionEspecialidad;
+                especialidadExiste.PrecioEspecialidad = IdEspecialidad.PrecioEspecialidad;
 
                 modeloEspecialidad.Update(especialidadExiste);
                 modeloEspecialidad.SaveChanges();

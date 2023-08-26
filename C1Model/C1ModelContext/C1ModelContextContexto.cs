@@ -22,10 +22,7 @@ namespace AppWebSistemaClinica.C1Model.C1ModelContext
 
         public virtual DbSet<C1ModelUsuario> USUARIOS { get; set; }
         public virtual DbSet<C1ModelPerfil> PERFILES { get; set; }
-        public virtual DbSet<C1ModelFuncion> FUNCIONES { get; set; }
         public virtual DbSet<C1ModelRol> ROLES { get; set; }
-
-
         public virtual DbSet<C1ModelCita> CITAS { get; set; }
         public virtual DbSet<C1ModelPago> PAGOS { get; set; }
         public virtual DbSet<C1ModelPaciente> PACIENTES { get; set; }

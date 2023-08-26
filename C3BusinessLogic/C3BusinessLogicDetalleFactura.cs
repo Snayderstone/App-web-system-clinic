@@ -6,17 +6,10 @@ namespace AppWebSistemaClinica.C3BusinessLogic
     internal class C3BusinessLogicDetalleFactura
     {
     
-        readonly C2AccessGenericIGeneric<C1ModelPago> modeloPago = new C2AccessGenericGeneric<C1ModelPago>();
         readonly C2AccessGenericIGeneric<C1ModelDetalleFactura> modeloDetalleFactura = new C2AccessGenericGeneric<C1ModelDetalleFactura>();
 
         public void insertarDetalleFactura(C1ModelDetalleFactura IdDetalleFactura)
         {
-            bool pagoExiste = modeloPago.Exists(c => c.IdPago == IdDetalleFactura.IdPago);
-
-            if (!pagoExiste)
-            {
-                throw new ArgumentException("El pago con el ID especificado no existe. ");
-            }
 
             try
             {
@@ -33,12 +26,6 @@ namespace AppWebSistemaClinica.C3BusinessLogic
         public void actualizarDetalleFactura(C1ModelDetalleFactura IdDetalleFactura)
         {
             var detalleFacturaExiste = modeloDetalleFactura.GetById(IdDetalleFactura.IdDetalleFactura);
-            bool pagoExiste = modeloPago.Exists(c => c.IdPago == IdDetalleFactura.IdPago);
-
-            if (!pagoExiste)
-            {
-                throw new ArgumentException("El pago con el ID especificado no existe. ");
-            }
 
             if (detalleFacturaExiste == null)
             {
@@ -49,10 +36,10 @@ namespace AppWebSistemaClinica.C3BusinessLogic
             {
                 detalleFacturaExiste.IdDetalleFactura = IdDetalleFactura.IdDetalleFactura;
                 detalleFacturaExiste.DescripcionDetalleFactura = IdDetalleFactura.DescripcionDetalleFactura;
-                detalleFacturaExiste.CantidadCitasDetalleFactura = IdDetalleFactura.CantidadCitasDetalleFactura;
                 detalleFacturaExiste.PrecioUnitarioDetalleFactura = IdDetalleFactura.PrecioUnitarioDetalleFactura;
+                detalleFacturaExiste.IvaDetalleFactura = IdDetalleFactura.IvaDetalleFactura;
+                detalleFacturaExiste.OtroImpuesto = IdDetalleFactura.OtroImpuesto;
                 detalleFacturaExiste.PrecioTotalDetalleFactura = IdDetalleFactura.PrecioTotalDetalleFactura;
-                detalleFacturaExiste.IdPago = IdDetalleFactura.IdPago;
 
 
                 modeloDetalleFactura.Update(detalleFacturaExiste);

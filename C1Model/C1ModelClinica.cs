@@ -14,10 +14,10 @@ namespace AppWebSistemaClinica.C1Model
         public decimal PrecioConsultaClinica { get; set; }
 
         [Required]
-        public virtual ICollection<C1ModelCita> C1ModelCitas { get; set; }
+        public virtual ICollection<C1ModelCita> C1ModelCita { get; set; }
 
         [Required]
-        public virtual ICollection<C1ModelEquipoMedicoClinica> C1ModelEquipoMedicoClinica { get; set; } = new List<C1ModelEquipoMedicoClinica>();
+        public virtual ICollection<C1ModelEquipoMedicoClinica> C1ModelEquipoMedicoClinica { get; set; }
 
     }
 }

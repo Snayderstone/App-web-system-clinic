@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppWebSistemaClinica.Migrations
 {
     [DbContext(typeof(C1ModelContextContexto))]
-    [Migration("20230821073052_m6")]
-    partial class m6
+    [Migration("20230826190404_m10")]
+    partial class m10
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,22 +46,17 @@ namespace AppWebSistemaClinica.Migrations
                     b.Property<DateTime>("HoraInicioCita")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("IdDetalleFactura")
+                    b.Property<int>("IdClinica")
                         .HasColumnType("int");
 
                     b.Property<int>("IdMedico")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdPaciente")
-                        .HasColumnType("int");
-
                     b.HasKey("IdCita");
 
-                    b.HasIndex("IdDetalleFactura");
+                    b.HasIndex("IdClinica");
 
                     b.HasIndex("IdMedico");
-
-                    b.HasIndex("IdPaciente");
 
                     b.ToTable("CITAS");
                 });
@@ -77,9 +72,6 @@ namespace AppWebSistemaClinica.Migrations
                     b.Property<int>("CapacidadClinica")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdMedico")
-                        .HasColumnType("int");
-
                     b.Property<string>("NombreClinica")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -93,8 +85,6 @@ namespace AppWebSistemaClinica.Migrations
 
                     b.HasKey("IdClinica");
 
-                    b.HasIndex("IdMedico");
-
                     b.ToTable("CLINICAS");
                 });
 
@@ -106,15 +96,21 @@ namespace AppWebSistemaClinica.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdDetalleFactura"));
 
-                    b.Property<int>("CantidadCitasDetalleFactura")
-                        .HasColumnType("int");
-
                     b.Property<string>("DescripcionDetalleFactura")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IdPago")
+                    b.Property<int>("IdCita")
                         .HasColumnType("int");
+
+                    b.Property<int>("IdFactura")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("IvaDetalleFactura")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("OtroImpuesto")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("PrecioTotalDetalleFactura")
                         .HasColumnType("decimal(18,2)");
@@ -124,7 +120,9 @@ namespace AppWebSistemaClinica.Migrations
 
                     b.HasKey("IdDetalleFactura");
 
-                    b.HasIndex("IdPago");
+                    b.HasIndex("IdCita");
+
+                    b.HasIndex("IdFactura");
 
                     b.ToTable("DETALLESFACTURAS");
                 });
@@ -153,12 +151,10 @@ namespace AppWebSistemaClinica.Migrations
             modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelEquipoMedicoClinica", b =>
                 {
                     b.Property<int>("IdEquipoMedico")
-                        .HasColumnType("int")
-                        .HasColumnOrder(0);
+                        .HasColumnType("int");
 
                     b.Property<int>("IdClinica")
-                        .HasColumnType("int")
-                        .HasColumnOrder(1);
+                        .HasColumnType("int");
 
                     b.HasKey("IdEquipoMedico", "IdClinica");
 
@@ -178,6 +174,9 @@ namespace AppWebSistemaClinica.Migrations
                     b.Property<string>("DescripcionEspecialidad")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("PrecioEspecialidad")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("IdEspecialidad");
 
@@ -199,7 +198,10 @@ namespace AppWebSistemaClinica.Migrations
                     b.Property<DateTime>("FechaFactura")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("IdDetalleFactura")
+                    b.Property<int>("IdPaciente")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdPago")
                         .HasColumnType("int");
 
                     b.Property<decimal>("MontoTotalFctura")
@@ -207,30 +209,11 @@ namespace AppWebSistemaClinica.Migrations
 
                     b.HasKey("IdFactura");
 
-                    b.HasIndex("IdDetalleFactura");
+                    b.HasIndex("IdPaciente");
+
+                    b.HasIndex("IdPago");
 
                     b.ToTable("FACTURAS");
-                });
-
-            modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelFuncion", b =>
-                {
-                    b.Property<int>("IdFuncion")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdFuncion"));
-
-                    b.Property<string>("DescripcionFuncion")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NombreFuncion")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdFuncion");
-
-                    b.ToTable("FUNCIONES");
                 });
 
             modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelHistorialClinico", b =>
@@ -400,7 +383,7 @@ namespace AppWebSistemaClinica.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("HistoriaCliente")
+                    b.Property<int>("IdHistorialClinico")
                         .HasColumnType("int");
 
                     b.HasKey("IdRegistroMedico");
@@ -465,9 +448,9 @@ namespace AppWebSistemaClinica.Migrations
 
             modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelCita", b =>
                 {
-                    b.HasOne("AppWebSistemaClinica.C1Model.C1ModelDetalleFactura", "C1ModelDetalleFactura")
+                    b.HasOne("AppWebSistemaClinica.C1Model.C1ModelClinica", "C1ModelClinica")
                         .WithMany("C1ModelCita")
-                        .HasForeignKey("IdDetalleFactura")
+                        .HasForeignKey("IdClinica")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -477,39 +460,28 @@ namespace AppWebSistemaClinica.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AppWebSistemaClinica.C1Model.C1ModelPaciente", "C1ModelPaciente")
-                        .WithMany()
-                        .HasForeignKey("IdPaciente")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("C1ModelDetalleFactura");
-
-                    b.Navigation("C1ModelMedico");
-
-                    b.Navigation("C1ModelPaciente");
-                });
-
-            modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelClinica", b =>
-                {
-                    b.HasOne("AppWebSistemaClinica.C1Model.C1ModelMedico", "C1ModelMedico")
-                        .WithMany()
-                        .HasForeignKey("IdMedico")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("C1ModelClinica");
 
                     b.Navigation("C1ModelMedico");
                 });
 
             modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelDetalleFactura", b =>
                 {
-                    b.HasOne("AppWebSistemaClinica.C1Model.C1ModelPago", "C1ModelPago")
-                        .WithMany()
-                        .HasForeignKey("IdPago")
+                    b.HasOne("AppWebSistemaClinica.C1Model.C1ModelCita", "C1ModelCita")
+                        .WithMany("C1ModelDetalleFactura")
+                        .HasForeignKey("IdCita")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("C1ModelPago");
+                    b.HasOne("AppWebSistemaClinica.C1Model.C1ModelFactura", "C1ModelFactura")
+                        .WithMany("C1ModelDetalleFactura")
+                        .HasForeignKey("IdFactura")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("C1ModelCita");
+
+                    b.Navigation("C1ModelFactura");
                 });
 
             modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelEquipoMedicoClinica", b =>
@@ -533,19 +505,27 @@ namespace AppWebSistemaClinica.Migrations
 
             modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelFactura", b =>
                 {
-                    b.HasOne("AppWebSistemaClinica.C1Model.C1ModelDetalleFactura", "C1ModelDetalleFactura")
-                        .WithMany()
-                        .HasForeignKey("IdDetalleFactura")
+                    b.HasOne("AppWebSistemaClinica.C1Model.C1ModelPaciente", "C1ModelPaciente")
+                        .WithMany("C1ModelFactura")
+                        .HasForeignKey("IdPaciente")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("C1ModelDetalleFactura");
+                    b.HasOne("AppWebSistemaClinica.C1Model.C1ModelPago", "C1ModelPago")
+                        .WithMany("C1ModelFactura")
+                        .HasForeignKey("IdPago")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("C1ModelPaciente");
+
+                    b.Navigation("C1ModelPago");
                 });
 
             modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelHistorialClinico", b =>
                 {
                     b.HasOne("AppWebSistemaClinica.C1Model.C1ModelPaciente", "C1ModelPaciente")
-                        .WithMany()
+                        .WithMany("C1ModelHistorialClinico")
                         .HasForeignKey("IdPaciente")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -556,7 +536,7 @@ namespace AppWebSistemaClinica.Migrations
             modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelMedico", b =>
                 {
                     b.HasOne("AppWebSistemaClinica.C1Model.C1ModelEspecialidad", "C1ModelEspecialidad")
-                        .WithMany()
+                        .WithMany("C1ModelMedico")
                         .HasForeignKey("IdEspecialidad")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -586,7 +566,7 @@ namespace AppWebSistemaClinica.Migrations
             modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelRegistroMedico", b =>
                 {
                     b.HasOne("AppWebSistemaClinica.C1Model.C1ModelHistorialClinico", "C1ModelHistorialClinico")
-                        .WithMany()
+                        .WithMany("C1ModelRegistroMedico")
                         .HasForeignKey("C1ModelHistorialClinicoId_HistorialClinico")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -594,19 +574,48 @@ namespace AppWebSistemaClinica.Migrations
                     b.Navigation("C1ModelHistorialClinico");
                 });
 
-            modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelClinica", b =>
+            modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelCita", b =>
                 {
-                    b.Navigation("C1ModelEquipoMedicoClinica");
+                    b.Navigation("C1ModelDetalleFactura");
                 });
 
-            modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelDetalleFactura", b =>
+            modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelClinica", b =>
                 {
                     b.Navigation("C1ModelCita");
+
+                    b.Navigation("C1ModelEquipoMedicoClinica");
                 });
 
             modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelEquipoMedico", b =>
                 {
                     b.Navigation("C1ModelEquipoMedicoClinica");
+                });
+
+            modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelEspecialidad", b =>
+                {
+                    b.Navigation("C1ModelMedico");
+                });
+
+            modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelFactura", b =>
+                {
+                    b.Navigation("C1ModelDetalleFactura");
+                });
+
+            modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelHistorialClinico", b =>
+                {
+                    b.Navigation("C1ModelRegistroMedico");
+                });
+
+            modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelPaciente", b =>
+                {
+                    b.Navigation("C1ModelFactura");
+
+                    b.Navigation("C1ModelHistorialClinico");
+                });
+
+            modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelPago", b =>
+                {
+                    b.Navigation("C1ModelFactura");
                 });
 
             modelBuilder.Entity("AppWebSistemaClinica.C1Model.C1ModelRol", b =>

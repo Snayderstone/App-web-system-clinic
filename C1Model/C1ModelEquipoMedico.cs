@@ -11,6 +11,6 @@ namespace AppWebSistemaClinica.C1Model
         public string NombreEquipoMedico { get; set; }
         public string DescripcionEquipoMedico { get; set; }
 
-        public virtual ICollection<C1ModelEquipoMedicoClinica> C1ModelEquipoMedicoClinica { get; set; } = new List<C1ModelEquipoMedicoClinica>();   
+        public virtual ICollection<C1ModelEquipoMedicoClinica> C1ModelEquipoMedicoClinica { get; set; }
     }
 }

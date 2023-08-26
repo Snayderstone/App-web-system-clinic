@@ -9,17 +9,19 @@ namespace AppWebSistemaClinica.C1Model
         [Key]
         public int IdDetalleFactura { get; set; }
         public string DescripcionDetalleFactura { get; set; }
-        public int CantidadCitasDetalleFactura { get; set; }
         public decimal PrecioUnitarioDetalleFactura { get; set; }
+        public decimal IvaDetalleFactura { get; set; }
+        public decimal OtroImpuesto { get; set; }
         public decimal PrecioTotalDetalleFactura { get; set; }
 
-        [ForeignKey("C1ModelPago")]
-        public int IdPago { get; set; }
-        public virtual C1ModelPago? C1ModelPago { get; set; }
+        [ForeignKey("C1ModelCita")]
+        public int IdCita{ get; set; }
+        public virtual C1ModelCita C1ModelCita { get; set; }
 
-        [Required]
-        public virtual ICollection<C1ModelCita> C1ModelCita { get; set; }   
+        [ForeignKey("C1ModelFactura")]
+        public int IdFactura { get; set; }
+        public virtual C1ModelFactura C1ModelFactura { get; set; }
 
- 
+
     }
 }

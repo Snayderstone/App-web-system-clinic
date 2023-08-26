@@ -10,5 +10,8 @@ namespace AppWebSistemaClinica.C1Model
         public int IdPago { get; set; }
         public string FormaPago { get; set; }
         public string DescripcionPago { get; set; }
+
+        [Required]
+        public virtual ICollection<C1ModelFactura> C1ModelFactura { get; set; }
     }
 }

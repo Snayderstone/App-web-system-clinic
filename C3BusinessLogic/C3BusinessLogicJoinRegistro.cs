@@ -5,7 +5,6 @@ namespace AppWebSistemaClinica.C3BusinessLogic
 {
     public class C3BusinessLogicJoinRegistro
     {
-        readonly C2AccessGenericGeneric<C1ModelFuncion> modeloFuncion = new C2AccessGenericGeneric<C1ModelFuncion>();
         readonly C2AccessGenericGeneric<C1ModelRol> modeloRol = new C2AccessGenericGeneric<C1ModelRol>();
         readonly C2AccessGenericGeneric<C1ModelUsuario> modeloUsuario = new C2AccessGenericGeneric<C1ModelUsuario>();
 

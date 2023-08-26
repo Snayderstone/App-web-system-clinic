@@ -6,11 +6,27 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AppWebSistemaClinica.Migrations
 {
     /// <inheritdoc />
-    public partial class m6 : Migration
+    public partial class m10 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "CLINICAS",
+                columns: table => new
+                {
+                    IdClinica = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NombreClinica = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CapacidadClinica = table.Column<int>(type: "int", nullable: false),
+                    UbicacionClinica = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PrecioConsultaClinica = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CLINICAS", x => x.IdClinica);
+                });
+
             migrationBuilder.CreateTable(
                 name: "EQUIPOSMEDICOS",
                 columns: table => new
@@ -31,25 +47,12 @@ namespace AppWebSistemaClinica.Migrations
                 {
                     IdEspecialidad = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DescripcionEspecialidad = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    DescripcionEspecialidad = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PrecioEspecialidad = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ESPECIALIDADES", x => x.IdEspecialidad);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FUNCIONES",
-                columns: table => new
-                {
-                    IdFuncion = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    NombreFuncion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DescripcionFuncion = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FUNCIONES", x => x.IdFuncion);
                 });
 
             migrationBuilder.CreateTable(
@@ -118,6 +121,30 @@ namespace AppWebSistemaClinica.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "EQUIPOSMEDICOSCLINICAS",
+                columns: table => new
+                {
+                    IdEquipoMedico = table.Column<int>(type: "int", nullable: false),
+                    IdClinica = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EQUIPOSMEDICOSCLINICAS", x => new { x.IdEquipoMedico, x.IdClinica });
+                    table.ForeignKey(
+                        name: "FK_EQUIPOSMEDICOSCLINICAS_CLINICAS_IdClinica",
+                        column: x => x.IdClinica,
+                        principalTable: "CLINICAS",
+                        principalColumn: "IdClinica",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EQUIPOSMEDICOSCLINICAS_EQUIPOSMEDICOS_IdEquipoMedico",
+                        column: x => x.IdEquipoMedico,
+                        principalTable: "EQUIPOSMEDICOS",
+                        principalColumn: "IdEquipoMedico",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MEDICOS",
                 columns: table => new
                 {
@@ -164,22 +191,28 @@ namespace AppWebSistemaClinica.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DETALLESFACTURAS",
+                name: "FACTURAS",
                 columns: table => new
                 {
-                    IdDetalleFactura = table.Column<int>(type: "int", nullable: false)
+                    IdFactura = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DescripcionDetalleFactura = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CantidadCitasDetalleFactura = table.Column<int>(type: "int", nullable: false),
-                    PrecioUnitarioDetalleFactura = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PrecioTotalDetalleFactura = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    MontoTotalFctura = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    EstadoPagoFactura = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FechaFactura = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IdPaciente = table.Column<int>(type: "int", nullable: false),
                     IdPago = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DETALLESFACTURAS", x => x.IdDetalleFactura);
+                    table.PrimaryKey("PK_FACTURAS", x => x.IdFactura);
                     table.ForeignKey(
-                        name: "FK_DETALLESFACTURAS_PAGOS_IdPago",
+                        name: "FK_FACTURAS_PACIENTES_IdPaciente",
+                        column: x => x.IdPaciente,
+                        principalTable: "PACIENTES",
+                        principalColumn: "idPaciente",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FACTURAS_PAGOS_IdPago",
                         column: x => x.IdPago,
                         principalTable: "PAGOS",
                         principalColumn: "IdPago",
@@ -213,22 +246,29 @@ namespace AppWebSistemaClinica.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CLINICAS",
+                name: "CITAS",
                 columns: table => new
                 {
-                    IdClinica = table.Column<int>(type: "int", nullable: false)
+                    IdCita = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NombreClinica = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CapacidadClinica = table.Column<int>(type: "int", nullable: false),
-                    UbicacionClinica = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PrecioConsultaClinica = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    IdMedico = table.Column<int>(type: "int", nullable: false)
+                    FechaCita = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    HoraInicioCita = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    HoraFinCita = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EstadoCita = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IdMedico = table.Column<int>(type: "int", nullable: false),
+                    IdClinica = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CLINICAS", x => x.IdClinica);
+                    table.PrimaryKey("PK_CITAS", x => x.IdCita);
                     table.ForeignKey(
-                        name: "FK_CLINICAS_MEDICOS_IdMedico",
+                        name: "FK_CITAS_CLINICAS_IdClinica",
+                        column: x => x.IdClinica,
+                        principalTable: "CLINICAS",
+                        principalColumn: "IdClinica",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CITAS_MEDICOS_IdMedico",
                         column: x => x.IdMedico,
                         principalTable: "MEDICOS",
                         principalColumn: "IdMedico",
@@ -242,7 +282,7 @@ namespace AppWebSistemaClinica.Migrations
                     IdRegistroMedico = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DetallesRegistroMedico = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    HistoriaCliente = table.Column<int>(type: "int", nullable: false),
+                    IdHistorialClinico = table.Column<int>(type: "int", nullable: false),
                     C1ModelHistorialClinicoId_HistorialClinico = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -257,92 +297,40 @@ namespace AppWebSistemaClinica.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CITAS",
+                name: "DETALLESFACTURAS",
                 columns: table => new
                 {
-                    IdCita = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FechaCita = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    HoraInicioCita = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    HoraFinCita = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EstadoCita = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IdMedico = table.Column<int>(type: "int", nullable: false),
-                    IdDetalleFactura = table.Column<int>(type: "int", nullable: false),
-                    IdPaciente = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CITAS", x => x.IdCita);
-                    table.ForeignKey(
-                        name: "FK_CITAS_DETALLESFACTURAS_IdDetalleFactura",
-                        column: x => x.IdDetalleFactura,
-                        principalTable: "DETALLESFACTURAS",
-                        principalColumn: "IdDetalleFactura",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CITAS_MEDICOS_IdMedico",
-                        column: x => x.IdMedico,
-                        principalTable: "MEDICOS",
-                        principalColumn: "IdMedico",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CITAS_PACIENTES_IdPaciente",
-                        column: x => x.IdPaciente,
-                        principalTable: "PACIENTES",
-                        principalColumn: "idPaciente",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FACTURAS",
-                columns: table => new
-                {
-                    IdFactura = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MontoTotalFctura = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    EstadoPagoFactura = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FechaFactura = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IdDetalleFactura = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DescripcionDetalleFactura = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PrecioUnitarioDetalleFactura = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    IvaDetalleFactura = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    OtroImpuesto = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PrecioTotalDetalleFactura = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    IdCita = table.Column<int>(type: "int", nullable: false),
+                    IdFactura = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FACTURAS", x => x.IdFactura);
+                    table.PrimaryKey("PK_DETALLESFACTURAS", x => x.IdDetalleFactura);
                     table.ForeignKey(
-                        name: "FK_FACTURAS_DETALLESFACTURAS_IdDetalleFactura",
-                        column: x => x.IdDetalleFactura,
-                        principalTable: "DETALLESFACTURAS",
-                        principalColumn: "IdDetalleFactura",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EQUIPOSMEDICOSCLINICAS",
-                columns: table => new
-                {
-                    IdEquipoMedico = table.Column<int>(type: "int", nullable: false),
-                    IdClinica = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EQUIPOSMEDICOSCLINICAS", x => new { x.IdEquipoMedico, x.IdClinica });
-                    table.ForeignKey(
-                        name: "FK_EQUIPOSMEDICOSCLINICAS_CLINICAS_IdClinica",
-                        column: x => x.IdClinica,
-                        principalTable: "CLINICAS",
-                        principalColumn: "IdClinica",
+                        name: "FK_DETALLESFACTURAS_CITAS_IdCita",
+                        column: x => x.IdCita,
+                        principalTable: "CITAS",
+                        principalColumn: "IdCita",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EQUIPOSMEDICOSCLINICAS_EQUIPOSMEDICOS_IdEquipoMedico",
-                        column: x => x.IdEquipoMedico,
-                        principalTable: "EQUIPOSMEDICOS",
-                        principalColumn: "IdEquipoMedico",
+                        name: "FK_DETALLESFACTURAS_FACTURAS_IdFactura",
+                        column: x => x.IdFactura,
+                        principalTable: "FACTURAS",
+                        principalColumn: "IdFactura",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CITAS_IdDetalleFactura",
+                name: "IX_CITAS_IdClinica",
                 table: "CITAS",
-                column: "IdDetalleFactura");
+                column: "IdClinica");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CITAS_IdMedico",
@@ -350,19 +338,14 @@ namespace AppWebSistemaClinica.Migrations
                 column: "IdMedico");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CITAS_IdPaciente",
-                table: "CITAS",
-                column: "IdPaciente");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CLINICAS_IdMedico",
-                table: "CLINICAS",
-                column: "IdMedico");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DETALLESFACTURAS_IdPago",
+                name: "IX_DETALLESFACTURAS_IdCita",
                 table: "DETALLESFACTURAS",
-                column: "IdPago");
+                column: "IdCita");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DETALLESFACTURAS_IdFactura",
+                table: "DETALLESFACTURAS",
+                column: "IdFactura");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EQUIPOSMEDICOSCLINICAS_IdClinica",
@@ -370,9 +353,14 @@ namespace AppWebSistemaClinica.Migrations
                 column: "IdClinica");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FACTURAS_IdDetalleFactura",
+                name: "IX_FACTURAS_IdPaciente",
                 table: "FACTURAS",
-                column: "IdDetalleFactura");
+                column: "IdPaciente");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FACTURAS_IdPago",
+                table: "FACTURAS",
+                column: "IdPago");
 
             migrationBuilder.CreateIndex(
                 name: "IX_HISTORIALESCLINICOS_IdPaciente",
@@ -404,16 +392,10 @@ namespace AppWebSistemaClinica.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CITAS");
+                name: "DETALLESFACTURAS");
 
             migrationBuilder.DropTable(
                 name: "EQUIPOSMEDICOSCLINICAS");
-
-            migrationBuilder.DropTable(
-                name: "FACTURAS");
-
-            migrationBuilder.DropTable(
-                name: "FUNCIONES");
 
             migrationBuilder.DropTable(
                 name: "PERFILES");
@@ -422,13 +404,13 @@ namespace AppWebSistemaClinica.Migrations
                 name: "REGISTROSMEDICOS");
 
             migrationBuilder.DropTable(
-                name: "CLINICAS");
+                name: "CITAS");
+
+            migrationBuilder.DropTable(
+                name: "FACTURAS");
 
             migrationBuilder.DropTable(
                 name: "EQUIPOSMEDICOS");
-
-            migrationBuilder.DropTable(
-                name: "DETALLESFACTURAS");
 
             migrationBuilder.DropTable(
                 name: "ROLES");
@@ -438,6 +420,9 @@ namespace AppWebSistemaClinica.Migrations
 
             migrationBuilder.DropTable(
                 name: "HISTORIALESCLINICOS");
+
+            migrationBuilder.DropTable(
+                name: "CLINICAS");
 
             migrationBuilder.DropTable(
                 name: "MEDICOS");

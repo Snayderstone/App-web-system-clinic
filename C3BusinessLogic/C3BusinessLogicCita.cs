@@ -1,5 +1,6 @@
 ﻿using AppWebSistemaClinica.C1Model;
 using AppWebSistemaClinica.C2DataAccess.C2AccessGeneric;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppWebSistemaClinica.C3BusinessLogic
 {
@@ -7,6 +8,42 @@ namespace AppWebSistemaClinica.C3BusinessLogic
     {
         readonly C2AccessGenericIGeneric<C1ModelCita> modeloCita = new C2AccessGenericGeneric<C1ModelCita>();
         readonly C2AccessGenericIGeneric<C1ModelMedico> modeloMedico = new C2AccessGenericGeneric<C1ModelMedico>();
+
+
+        //Equiposmedicos-equiposmedicosclinicas-Clinica----CITA-----MEDICO-ESPECIALIDAD-FDETALLEFACTURA-PAGO-FACTURA-PACIENTE-HISTORIALCLINICO-REGSITROCLINICO
+        public List<C1ModelCita> obtenerTodasCitasEgaer()
+        {
+            try
+            {
+             IQueryable<C1ModelCita> listarCitas = modeloCita.GetAll()
+             
+ 
+             .Include(c => c.C1ModelDetalleFactura)
+                .ThenInclude(c => c.C1ModelFactura)
+                    .ThenInclude(c => c.C1ModelPaciente)
+                        .ThenInclude(c => c.C1ModelHistorialClinico)
+                            .ThenInclude(c => c.C1ModelRegistroMedico)
+
+             .Include(c => c.C1ModelDetalleFactura)
+                .ThenInclude(c => c.C1ModelFactura)
+                    .ThenInclude(c => c.C1ModelPago)
+
+             .Include(c => c.C1ModelMedico)
+                .ThenInclude(c => c.C1ModelEspecialidad)
+
+             .Include(c => c.C1ModelClinica)
+                .ThenInclude(c => c.C1ModelEquipoMedicoClinica)
+                    .ThenInclude(c => c.C1ModelEquipoMedico);
+
+                return listarCitas.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener todas las ventas: " + ex.Message, ex);
+            }
+        }
+
+
 
         public void insertarCita(C1ModelCita IdCita)
         {

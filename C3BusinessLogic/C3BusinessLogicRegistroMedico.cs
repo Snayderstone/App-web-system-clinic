@@ -37,7 +37,7 @@ namespace AppWebSistemaClinica.C3BusinessLogic
             {
                 // Actualiza los campos de perfil
                 registromedicoExiste.DetallesRegistroMedico = IdRegistroMedico.DetallesRegistroMedico;
-                registromedicoExiste.HistoriaCliente = IdRegistroMedico.HistoriaCliente;
+                registromedicoExiste.IdHistorialClinico = IdRegistroMedico.IdHistorialClinico;
                 
                 modeloRegistroMedico.Update(registromedicoExiste);
                 modeloRegistroMedico.SaveChanges();

@@ -16,5 +16,8 @@ namespace AppWebSistemaClinica.C1Model
         public int IdPaciente { get; set; }
         public virtual C1ModelPaciente C1ModelPaciente { get; set; }
 
+        [Required]
+        public virtual ICollection<C1ModelRegistroMedico> C1ModelRegistroMedico { get; set; }
+
     }
 }

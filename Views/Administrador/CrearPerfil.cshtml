@@ -1,0 +1,65 @@
+﻿@model AppWebSistemaClinica.Models.PerfilViewModel
+
+@{
+    Layout = ViewBag.Layout; // Establecer el diseño utilizando la variable ViewBag.Layout
+    ViewBag.Title = "Crear Perfil";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Crear Perfil</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="~/css/styles.css" rel="stylesheet" />
+    <style>
+        .w3-btn {
+            width: 150px;
+        }
+    </style>
+</head>
+<body class="sb-nav-fixed">
+    <main>
+        <div class="container-fluid px-4">
+            <form class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin" asp-controller="Administrador" asp-action="CrearPerfil" method="post">
+                <h2 class="w3-center">Crear Perfil</h2>
+
+                <div class="w3-row w3-section">
+                    <div class="w3-col" style="width:50px"></div>
+                    <div class="w3-rest">
+                        <label for="IdUsuario">Seleccione el Correo: </label>
+                        <select class="w3-input w3-border" name="IdUsuario">
+                            @foreach (var item in ViewBag.Correos)
+                            {
+                                <option value="@item.Value">@item.Text</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="w3-row w3-section">
+                    <div class="w3-col" style="width:50px"></div>
+                    <div class="w3-rest">
+                        <label for="IdRol">Seleccione el Rol: </label>
+                        <select class="w3-input w3-border" name="IdRol">
+                            @foreach (var item in ViewBag.Roles)
+                            {
+                                <option value="@item.Value">@item.Text</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <button class="w3-button w3-block w3-section w3-green w3-round-xlarge" type="submit">Guardar</button>
+                <a href="@Url.Action("ImprimirPerfiles", "Administrador")" class="w3-button w3-block w3-section w3-red w3-round-xlarge">Cancelar</a>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

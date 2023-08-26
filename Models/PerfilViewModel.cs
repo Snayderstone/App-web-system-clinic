@@ -1,17 +1,25 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AppWebSistemaClinica.Controllers;
+using System.ComponentModel.DataAnnotations;
 
 namespace AppWebSistemaClinica.Models
 {
     public class PerfilViewModel
     {
+
         public int IdPerfil { get; set; }
-
-        [Required(ErrorMessage = "El ID de Usuario es requerido.")]
-        [Display(Name = "ID de Usuario")]
+        
         public int IdUsuario { get; set; }
-
-        [Required(ErrorMessage = "El ID de Rol es requerido.")]
-        [Display(Name = "ID de Rol")]
+        
+        public string NombreUsuario { get; set; }
+        
+        public string ApellidoUsuario { get; set; }
+        
+        public string CorreoElectronico { get; set; }
+        
         public int IdRol { get; set; }
+        
+        public string NombreRol { get; set; }
+        
+        public string DescripcionRol { get; set; }
     }
 }

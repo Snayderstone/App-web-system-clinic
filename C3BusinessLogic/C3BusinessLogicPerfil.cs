@@ -13,8 +13,6 @@ namespace AppWebSistemaClinica.C3BusinessLogic
         readonly C2AccessGenericIGeneric<C1ModelUsuario> modeloUsuario = new C2AccessGenericGeneric<C1ModelUsuario>();
 
 
-
-
         //Joins perfil ususario rol apra acceder a esos objetos
         //METODOS PARA JOINS user-perfil-rol
         public List<C1ModelPerfil> obtenerUsuariosPerfilesRolesEager()
@@ -144,6 +142,26 @@ namespace AppWebSistemaClinica.C3BusinessLogic
             catch (Exception ex)
             {
                 throw new Exception("Error al buscar el perfil. " + ex.Message, ex);
+            }
+        }
+
+        public Dictionary<string, int> ObtenerCantidadUsuariosPorRol()
+        {
+            try
+            {
+                // Obtiene todos los perfiles con información de usuario y rol relacionada
+                var perfiles = obtenerUsuariosPerfilesRolesEager();
+
+                // Agrupa los perfiles por nombre de rol y cuenta la cantidad de perfiles en cada grupo
+                var cantidadUsuariosPorRol = perfiles
+                    .GroupBy(p => p.C1ModelRol.NombreRol)
+                    .ToDictionary(g => g.Key, g => g.Count());
+
+                return cantidadUsuariosPorRol;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la cantidad de usuarios por rol: " + ex.Message, ex);
             }
         }
 

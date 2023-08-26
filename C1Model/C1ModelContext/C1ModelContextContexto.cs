@@ -44,13 +44,7 @@ namespace AppWebSistemaClinica.C1Model.C1ModelContext
         {
             try
             {
-                IConfigurationRoot configuration = new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("Y:\\Proyectos de VS Community\\100 PROYECTOFINAL\\AppWebSistemaClinica\\C1Model\\appsettings.json")
-                    .Build();
-                string connectionString = configuration.GetConnectionString("MyConnectionString");
-
-                optionsBuilder.UseSqlServer(connectionString);
+                IConfigurationRoot configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build(); string connectionString = configuration.GetConnectionString("MyConnectionString"); optionsBuilder.UseSqlServer(connectionString);
             }
             catch (Exception ex)
             {

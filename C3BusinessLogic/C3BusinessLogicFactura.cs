@@ -8,10 +8,24 @@ namespace AppWebSistemaClinica.C3BusinessLogic
 
         readonly C2AccessGenericIGeneric<C1ModelPago> modeloPago = new C2AccessGenericGeneric<C1ModelPago>();
         readonly C2AccessGenericIGeneric<C1ModelFactura> modeloFactura = new C2AccessGenericGeneric<C1ModelFactura>();
+        readonly C2AccessGenericIGeneric<C1ModelPaciente> modeloFaciente = new C2AccessGenericGeneric<C1ModelPaciente>();
 
         public void insertarFactura(C1ModelFactura IdFactura)
         {
             bool pagoExiste = modeloPago.Exists(c => c.IdPago == IdFactura.IdPago);
+            bool clienteExiste = modeloFaciente.Exists(c => c.idPaciente == IdFactura.IdPaciente);
+
+            if (!pagoExiste)
+            {
+                // Si el rol no existe, lanza una excepcion con mensaje personalizado
+                throw new ArgumentException("El rol con el ID especificado no existe. ");
+            }
+
+            if (!clienteExiste)
+            {
+                // Si el rol no existe, lanza una excepcion con mensaje personalizado
+                throw new ArgumentException("El rol con el ID especificado no existe. ");
+            }
             try
             {
                 modeloFactura.Add(IdFactura);

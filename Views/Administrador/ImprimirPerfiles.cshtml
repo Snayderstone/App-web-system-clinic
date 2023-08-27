@@ -72,7 +72,8 @@
                                     <td>@perfil.CorreoElectronico</td>
                                     <td>
                                         <a class="w3-button w3-blue w3-round-xlarge" asp-route-id="@perfil.IdPerfil" asp-controller="Administrador" asp-action="EditarPerfil">Editar</a>
-                                        <a class="w3-button w3-red w3-round-xlarge" asp-route-id="@perfil.IdPerfil" asp-controller="Administrador" asp-action="EliminarPerfil">Eliminar</a>
+                                        <a class="w3-button w3-red w3-round-xlarge" asp-route-id="@perfil.IdPerfil" asp-controller="Administrador" asp-action="EliminarPerfil" 
+                                            onclick="return confirm('¿Estás seguro de que deseas eliminar este médico?')">Eliminar</a>
                                     </td>
                                 </tr>
                             }

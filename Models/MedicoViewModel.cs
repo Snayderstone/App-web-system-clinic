@@ -6,6 +6,8 @@ namespace AppWebSistemaClinica.Models
     {
         public int IdMedico { get; set; }
 
+        public string? DescripcionEspecialidad { get; set; }
+
         [Required(ErrorMessage = "El nombre del médico es requerido.")]
         [Display(Name = "Nombre del Médico")]
         public string NombreMedico { get; set; }
@@ -17,7 +19,7 @@ namespace AppWebSistemaClinica.Models
         [Required(ErrorMessage = "El teléfono del médico es requerido.")]
         [Display(Name = "Teléfono del Médico")]
         [RegularExpression(@"^\d{10}$", ErrorMessage = "El teléfono debe tener 10 dígitos.")]
-        public int TelefonoMedico { get; set; }
+        public string TelefonoMedico { get; set; }
 
         [Required(ErrorMessage = "El correo electrónico del médico es requerido.")]
         [Display(Name = "Correo Electrónico del Médico")]
@@ -28,7 +30,8 @@ namespace AppWebSistemaClinica.Models
         [Display(Name = "Horario del Médico")]
         public string HorarioMedico { get; set; }
 
-        [Required(ErrorMessage = "La especialidad del médico es requerida.")]
+
+        [Required(ErrorMessage = "Debe seleccionar una Especialidad.")]
         [Display(Name = "Especialidad del Médico")]
         public int IdEspecialidad { get; set; }
     }

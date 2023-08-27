@@ -1,0 +1,100 @@
+﻿@model AppWebSistemaClinica.Models.MedicoViewModel
+
+@{
+    Layout = ViewBag.Layout;
+}
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="~/css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        .w3-btn {
+            width: 150px;
+        }
+    </style>
+</head>
+<body class="sb-nav-fixed">
+    <main>
+        <div class="container-fluid px-4">
+
+            <form asp-controller="Administrador" asp-action="EditarMedico" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
+                <input type="hidden" asp-for="IdMedico" />
+                <h2 class="w3-center">Editar Médico</h2>
+
+                <div class="w3-row w3-section">
+                    <div class="w3-col" style="width:50px"></div>
+                    <div class="w3-rest">
+                        <label> Nuevo Nombre Médico:</label>
+                        <input asp-for="NombreMedico" class="w3-input w3-border" placeholder="Nombre">
+                        <span asp-validation-for="NombreMedico" class="text-danger"></span>
+
+                    </div>
+                </div>
+
+                <div class="w3-row w3-section">
+                    <div class="w3-col" style="width:50px"></div>
+                    <div class="w3-rest">
+                        <label>Nuevo Apellido Médico:</label>
+                        <input asp-for="ApellidoMedico" class="w3-input w3-border" placeholder="Apellido">
+                        <span asp-validation-for="ApellidoMedico" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="w3-row w3-section">
+                    <div class="w3-col" style="width:50px"></div>
+                    <div class="w3-rest">
+                        <label>Nuevo Teléfono Médico:</label>
+                        <input asp-for="TelefonoMedico" class="w3-input w3-border" placeholder="Teléfono">
+                        <span asp-validation-for="TelefonoMedico" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="w3-row w3-section">
+                    <div class="w3-col" style="width:50px"></div>
+                    <div class="w3-rest">
+                        <label>Nuevo Correo Médico:</label>
+                        <input asp-for="CorreoMedico" class="w3-input w3-border" placeholder="Correo">
+                        <span asp-validation-for="CorreoMedico" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="w3-row w3-section">
+                    <div class="w3-col" style="width:50px"></div>
+                    <div class="w3-rest">
+                        <label>Nuevo Horario Médico:</label>
+                        <input asp-for="HorarioMedico" class="w3-input w3-border" placeholder="Horario">
+                        <span asp-validation-for="HorarioMedico" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="w3-row w3-section">
+                    <div class="w3-col" style="width:50px"></div>
+                    <div class="w3-rest">
+                        <label asp-for="IdEspecialidad"></label>
+                        <select asp-for="IdEspecialidad" asp-items="(SelectList)ViewBag.Especialidades" class="form-control">
+                            <option value="">Seleccione una especialidad</option>
+                        </select>
+                        <span asp-validation-for="IdEspecialidad" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="w3-row w3-section">
+                    <div class="w3-col" style="width:50px"></div>
+                    <div class="w3-rest">
+
+                        <button class="w3-button w3-block w3-section w3-green w3-round-xlarge" type="submit"
+                                asp-controller="Administrador" asp-action="EditarMedico">Guardar</button>
+                        <a asp-controller="Administrador" asp-action="ImprimirMedicos" class="w3-button w3-block w3-section w3-red w3-round-xlarge">Cancelar</a>
+                    </div>
+                </div>
+           
+            </form>
+
+        </div>
+    </main>
+</body>
+</html>

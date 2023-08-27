@@ -1,4 +1,4 @@
-﻿@model List<RolViewModel>
+﻿@model List<MedicoViewModel>
 @{
     Layout = ViewBag.Layout; // Establecer el diseño utilizando la variable ViewBag.Layout
 }
@@ -15,10 +15,12 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="~/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    
+
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
-    .w3-btn {width:150px;}
+        .w3-btn {
+            width: 150px;
+        }
     </style>
 </head>
 <body class="sb-nav-fixed">
@@ -27,49 +29,58 @@
             <h1 class="mt-4"> Tabla de Roles</h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item"><a asp-area="" asp-controller="Administrador" asp-action="IndexAdmin">Panel</a></li>
-                <li class="breadcrumb-item active">Roles</li>
+                <li class="breadcrumb-item active">Médicos</li>
             </ol>
             <div class="card mb-4">
                 <div class="card-body">
-                    En esta sección, puedes explorar la lista de perfiles disponibles en el sistema. 
-                    Los perfiles son conjuntos predefinidos de permisos y configuraciones que determinan la funcionalidad y el acceso que un usuario tiene en la aplicación. 
-                    Cada perfil tiene un nombre que lo identifica y una descripción que proporciona más detalles sobre su propósito y alcance.
-                    Tambien podras modificar el perfil con los botones de control. 
+                    En esta sección, puedes explorar la lista de médicos disponibles en el sistema.
+                    Los medicos son conjuntos de profecionales dispuestos a resivir las citas dentro de nuestro sistema.
+                    Tambien podras modificar el medico con los botones de control.
                     <a target="_blank" href="https://github.com/Snayderstone/AppWebSistemaClinica">Más Información.</a>
                 </div>
             </div>
+
             <div class="card mb-4">
                 <div class="card-body">
-                    <a class="w3-button w3-green w3-round-xlarge" asp-area="" asp-controller="Administrador" asp-action="CrearRol">Crear Roles</a>
+                    <a class="w3-button w3-green w3-round-xlarge" asp-area="" asp-controller="Administrador" asp-action="CrearMedico">Crear Médicos</a>
                 </div>
             </div>
+
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    Roles
+                    Médicos
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple" class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Id</th>
+                                <th>ID</th>
                                 <th>Nombre</th>
-                                <th>Descripción</th>
-                                <th>Acción</th>
+                                <th>Apellido</th>
+                                <th>Teléfono</th>
+                                <th>Correo Electrónico</th>
+                                <th>Horario</th>
+                                <th>Especialidad</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var rol in Model)
+                            @foreach (var medico in Model)
                             {
                                 <tr>
-                                    <td>@rol.IdRol</td>
-                                    <td>@rol.NombreRol</td>
-                                    <td>@rol.DescripcionRol</td>
+                                    <td>@medico.IdMedico</td>
+                                    <td>@medico.NombreMedico</td>
+                                    <td>@medico.ApellidoMedico</td>
+                                    <td>@medico.TelefonoMedico</td>
+                                    <td>@medico.CorreoMedico</td>
+                                    <td>@medico.HorarioMedico</td>
+                                    <td>@medico.DescripcionEspecialidad</td>
 
                                     <td>
-                                        <a class="w3-button w3-blue w3-round-xlarge" asp-route-id="@rol.IdRol"  asp-controller="Administrador" asp-action="EditarRol">Editar</a>
-                                        <a class="w3-button w3-red w3-round-xlarge" asp-route-id="@rol.IdRol" asp-controller="Administrador" asp-action="EliminarRol"
-                                         onclick="return confirm('¿Estás seguro de que deseas eliminar este médico?')">Eliminar</a>
+                                        <a class="w3-button w3-blue w3-round-xlarge" asp-route-id="@medico.IdMedico" asp-controller="Administrador" asp-action="EditarMedico">Editar</a>
+                                        <a class="w3-button w3-red w3-round-xlarge" asp-route-id="@medico.IdMedico" asp-controller="Administrador" asp-action="EliminarMedico"
+                                           onclick="return confirm('¿Estás seguro de que deseas eliminar este médico?')">Eliminar</a>
                                     </td>
                                 </tr>
                             }

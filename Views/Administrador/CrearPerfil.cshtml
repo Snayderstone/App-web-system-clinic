@@ -1,8 +1,6 @@
 ﻿@model AppWebSistemaClinica.Models.PerfilViewModel
-
 @{
     Layout = ViewBag.Layout; // Establecer el diseño utilizando la variable ViewBag.Layout
-    ViewBag.Title = "Crear Perfil";
 }
 
 <!DOCTYPE html>
@@ -33,20 +31,36 @@
                 <div class="w3-row w3-section">
                     <div class="w3-col" style="width:50px"></div>
                     <div class="w3-rest">
-                        <label for="IdUsuario">Seleccione el registro: </label>
-                        <select class="w3-input w3-border" name="IdUsuario">
-                            @foreach (var item in ViewBag.Correos)
-                            {
-                                <option value="@item.Value">@item.Text</option>
-                            }
+                        <label>Correo para el Perfil </label>
+                        <select asp-for="IdUsuario" asp-items="(SelectList)ViewBag.Correos" class="form-control">
+                            <option value="">Seleccione un correo</option>
                         </select>
+                        <span asp-validation-for="IdUsuario" class="text-danger"></span>
                     </div>
                 </div>
 
-               
+                <div class="w3-row w3-section">
+                    <div class="w3-col" style="width:50px"></div>
+                    <div class="w3-rest">
+                        <label>Rol para el Perfil</label>
+                        <select asp-for="IdRol" asp-items="(SelectList)ViewBag.Roles" class="form-control">
+                            <option value="">Seleccione un Rol</option>
+                        </select>
+                        <span asp-validation-for="IdRol" class="text-danger"></span>
+                    </div>
+                </div>
 
-                <button class="w3-button w3-block w3-section w3-green w3-round-xlarge" type="submit">Guardar</button>
-                <a href="@Url.Action("ImprimirPerfiles", "Administrador")" class="w3-button w3-block w3-section w3-red w3-round-xlarge">Cancelar</a>
+                <div class="w3-row w3-section">
+                    <div class="w3-col" style="width:50px"></div>
+                    <div class="w3-rest">
+
+                        <button class="w3-button w3-block w3-section w3-green w3-round-xlarge" type="submit"
+                                asp-controller="Administrador" asp-action="CrearPerfil">
+                            Guardar
+                        </button>
+                        <a asp-controller="Administrador" asp-action="ImprimirPerfiles" class="w3-button w3-block w3-section w3-red w3-round-xlarge">Cancelar</a>
+                    </div>
+                </div>
             </form>
         </div>
     </main>

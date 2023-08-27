@@ -1,5 +1,6 @@
 ﻿using AppWebSistemaClinica.C1Model;
 using AppWebSistemaClinica.C2DataAccess.C2AccessGeneric;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppWebSistemaClinica.C3BusinessLogic
 {
@@ -104,6 +105,7 @@ namespace AppWebSistemaClinica.C3BusinessLogic
             }
         }
 
+
         public List<C1ModelMedico> imprimirMedicos()
         {
             try
@@ -116,6 +118,49 @@ namespace AppWebSistemaClinica.C3BusinessLogic
                 throw new Exception("Error al obtener los medicos. " + ex.Message, ex);
             }
         }
+
+        public Dictionary<string, int> ObtenerNumeroMedicosPorEspecialidad()
+        {
+            try
+            {
+                var medicosPorEspecialidad = new Dictionary<string, int>();
+
+                IQueryable<C1ModelEspecialidad> especialidades = modeloEspecialidad.GetAll();
+                IQueryable<C1ModelMedico> medicos = modeloMedico.GetAll();
+
+                foreach (var especialidad in especialidades)
+                {
+                    int numeroMedicos = medicos.Count(m => m.IdEspecialidad == especialidad.IdEspecialidad);
+                    medicosPorEspecialidad.Add(especialidad.DescripcionEspecialidad, numeroMedicos);
+                }
+
+                return medicosPorEspecialidad;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el número de médicos por especialidad: " + ex.Message, ex);
+            }
+        }
+
+        //Joins perfil ususario rol apra acceder a esos objetos
+        //METODOS PARA JOINS user-perfil-rol
+        public List<C1ModelMedico> obtenerMedicoEspecialidadEager()
+        {
+            try
+            {
+                IQueryable<C1ModelMedico> listaMedicos = modeloMedico.GetAll()
+                        .Include(p => p.C1ModelEspecialidad);
+
+                return listaMedicos.ToList();
+            }
+            catch (Exception ex)
+            {
+                // Lanzar la excepción hacia la capa de presentación
+                throw new Exception("Error al obtener perfiles: " + ex.Message, ex);
+            }
+        }
+
+
 
     }
 }

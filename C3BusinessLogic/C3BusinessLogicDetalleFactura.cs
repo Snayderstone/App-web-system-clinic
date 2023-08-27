@@ -1,12 +1,38 @@
 ﻿using AppWebSistemaClinica.C1Model;
 using AppWebSistemaClinica.C2DataAccess.C2AccessGeneric;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppWebSistemaClinica.C3BusinessLogic
 {
-    internal class C3BusinessLogicDetalleFactura
+    public class C3BusinessLogicDetalleFactura
     {
     
         readonly C2AccessGenericIGeneric<C1ModelDetalleFactura> modeloDetalleFactura = new C2AccessGenericGeneric<C1ModelDetalleFactura>();
+        public List<C1ModelDetalleFactura> obtenerTodasCitasEgaer()
+        {
+            try
+            {
+                IQueryable<C1ModelDetalleFactura> listades = modeloDetalleFactura.GetAll()
+
+
+
+                .Include(c => c.C1ModelFactura)
+                   .ThenInclude(c => c.C1ModelPaciente)
+
+                   .Include(c => c.C1ModelCita)
+                .ThenInclude(c => c.C1ModelMedico)
+                .ThenInclude(c => c.C1ModelEspecialidad)
+
+                .Include(c => c.C1ModelCita)
+                .ThenInclude(c => c.C1ModelClinica);
+
+                return listades.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener todas las ventas: " + ex.Message, ex);
+            }
+        }
 
         public void insertarDetalleFactura(C1ModelDetalleFactura IdDetalleFactura)
         {

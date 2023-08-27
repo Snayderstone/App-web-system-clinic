@@ -30,7 +30,32 @@ namespace AppWebSistemaClinica.Models
         [Display(Name = "Pago")]
         public int IdPago { get; set; }
 
-        // La siguiente propiedad es opcional, si deseas mantener una lista de citas asociadas en el ViewModel
+        public int IdPaciente { get; set; }
+
+        [Required(ErrorMessage = "El nombre del paciente es requerido.")]
+        [Display(Name = "Nombre")]
+        public string NombrePaciente { get; set; }
+
+        [Required(ErrorMessage = "El apellido del paciente es requerido.")]
+        [Display(Name = "Apellido")]
+
+        public int IdCita { get; set; }
+
+        public string NombreMedico { get; set; }
+
+        [Required(ErrorMessage = "El apellido del médico es requerido.")]
+        [Display(Name = "Apellido del Médico")]
+
+        public string CorreoMedico { get; set; }
+
+        [Required(ErrorMessage = "El horario del médico es requerido.")]
+        [Display(Name = "Horario del Médico")]
+
+        public string DescripcionEspecialidad { get; set; }
+        public string NombreClinica { get; set; }
+
+        [Required(ErrorMessage = "La capacidad de la clínica es requerida.")]
+        [Display(Name = "Capacidad de la Clínica")]
         public ICollection<CitaViewModel> C1ModelCitas { get; set; }
     }
 }

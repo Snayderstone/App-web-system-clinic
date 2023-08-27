@@ -3,7 +3,7 @@ using AppWebSistemaClinica.C2DataAccess.C2AccessGeneric;
 
 namespace AppWebSistemaClinica.C3BusinessLogic
 {
-	internal class C3BusinessLogicClinica
+    public class C3BusinessLogicClinica
 	{
 		readonly C2AccessGenericIGeneric<C1ModelEquipoMedicoClinica> modeloEquipoMedicoClinica = new C2AccessGenericGeneric<C1ModelEquipoMedicoClinica>();
 		readonly C2AccessGenericIGeneric<C1ModelCita> modeloCita = new C2AccessGenericGeneric<C1ModelCita>();

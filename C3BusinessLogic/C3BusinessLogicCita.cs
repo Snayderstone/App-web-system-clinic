@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AppWebSistemaClinica.C3BusinessLogic
 {
-    internal class C3BusinessLogicCita
+    public class C3BusinessLogicCita
     {
         readonly C2AccessGenericIGeneric<C1ModelCita> modeloCita = new C2AccessGenericGeneric<C1ModelCita>();
         readonly C2AccessGenericIGeneric<C1ModelMedico> modeloMedico = new C2AccessGenericGeneric<C1ModelMedico>();

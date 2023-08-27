@@ -1,0 +1,71 @@
+﻿@model List<DetalleFacturaViewModel>
+@{
+    Layout = ViewBag.Layout; // Establecer el diseño utilizando la variable ViewBag.Layout
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Roles - SB Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="~/css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        .w3-btn {
+            width: 150px;
+        }
+    </style>
+</head>
+<body class="sb-nav-fixed">
+    <main>
+   
+                <div class="card-body">
+                    <table id="datatablesSimple" class="table table-bordered">
+                        <thead>
+                            <tr>
+                        <th>IdDetalleFactura</th>
+                        <th>IdCita</th>
+                        <th>NombrePaciente</th>
+                        <th>NombreMedico</th>
+                        <th>CorreoMedico</th>
+                        <th>DescripcionEspecialidad</th>
+                        <th>NombreClinica</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var rol in Model)
+                            {
+                                <tr>
+                            <td>@rol.IdDetalleFactura</td>
+                            <td>@rol.IdCita</td>
+                            <td>@rol.NombrePaciente</td>
+                            <td>@rol.NombreMedico</td>
+                            <td>@rol.CorreoMedico</td>
+                            <td>@rol.DescripcionEspecialidad</td>
+                            <td>@rol.NombreClinica</td>
+
+                                    <td>
+                                        <a class="w3-button w3-blue w3-round-xlarge" asp-route-id="@rol.IdDetalleFactura" asp-controller="Profesional" asp-action="crearReg">Editar</a>
+                                        >
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+    
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="~/js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="~/js/datatables-simple-demo.js"></script>
+</body>
+</html>

@@ -22,6 +22,14 @@ builder.Services.AddDbContext<C1ModelContextContexto>(options =>
 builder.Services.AddScoped<C3BusinessLogicUsuario>();
 builder.Services.AddScoped<C3BusinessLogicRol>();
 builder.Services.AddScoped<C3BusinessLogicPerfil>();
+builder.Services.AddScoped<C3BusinessLogicDetalleFactura>();
+builder.Services.AddScoped<C3BusinessLogicFactura>();
+builder.Services.AddScoped<C3BusinessLogicCita>();
+builder.Services.AddScoped<C3BusinessLogicClinica>();
+builder.Services.AddScoped<C3BusinessLogicEquipoMedico>();
+builder.Services.AddScoped<C3BusinessLogicEspecialidad>();
+
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 var app = builder.Build();

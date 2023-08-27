@@ -33,7 +33,7 @@
                 <div class="w3-row w3-section">
                     <div class="w3-col" style="width:50px"></div>
                     <div class="w3-rest">
-                        <label for="IdUsuario">Seleccione el Correo: </label>
+                        <label for="IdUsuario">Seleccione el registro: </label>
                         <select class="w3-input w3-border" name="IdUsuario">
                             @foreach (var item in ViewBag.Correos)
                             {
@@ -43,18 +43,7 @@
                     </div>
                 </div>
 
-                <div class="w3-row w3-section">
-                    <div class="w3-col" style="width:50px"></div>
-                    <div class="w3-rest">
-                        <label for="IdRol">Seleccione el Rol: </label>
-                        <select class="w3-input w3-border" name="IdRol">
-                            @foreach (var item in ViewBag.Roles)
-                            {
-                                <option value="@item.Value">@item.Text</option>
-                            }
-                        </select>
-                    </div>
-                </div>
+               
 
                 <button class="w3-button w3-block w3-section w3-green w3-round-xlarge" type="submit">Guardar</button>
                 <a href="@Url.Action("ImprimirPerfiles", "Administrador")" class="w3-button w3-block w3-section w3-red w3-round-xlarge">Cancelar</a>

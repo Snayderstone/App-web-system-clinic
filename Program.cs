@@ -28,6 +28,9 @@ builder.Services.AddScoped<C3BusinessLogicCita>();
 builder.Services.AddScoped<C3BusinessLogicClinica>();
 builder.Services.AddScoped<C3BusinessLogicEquipoMedico>();
 builder.Services.AddScoped<C3BusinessLogicEspecialidad>();
+builder.Services.AddScoped<C3BusinessLogicMedico>();
+builder.Services.AddScoped<C3BusinessLogicPago>();
+
 
 
 // Add services to the container.

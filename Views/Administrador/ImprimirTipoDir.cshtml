@@ -66,12 +66,12 @@
                             {
                                 <tr>
                                     <td>@medico.Id</td>
-                                    <td>@medico.Descrip</td>
+                                    <td>@medico.descripcion</td>
                                     <td>@medico.estado</td>
 
                                     <td>
-                                        <a class="w3-button w3-blue w3-round-xlarge" asp-route-id="@medico.IdMedico" asp-controller="Administrador" asp-action="EditarMedico">Editar</a>
-                                        <a class="w3-button w3-red w3-round-xlarge" asp-route-id="@medico.IdMedico" asp-controller="Administrador" asp-action="EliminarMedico"
+                                        <a class="w3-button w3-blue w3-round-xlarge" asp-route-id="@medico.Id" asp-controller="Administrador" asp-action="EditarMedico">Editar</a>
+                                        <a class="w3-button w3-red w3-round-xlarge" asp-route-id="@medico.Id" asp-controller="Administrador" asp-action="EliminarMedico"
                                            onclick="return confirm('¿Estás seguro de que deseas eliminar este médico?')">Eliminar</a>
                                     </td>
                                 </tr>

@@ -1,5 +1,90 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<TipoDirViewModel>
 @{
+    Layout = ViewBag.Layout; // Establecer el diseño utilizando la variable ViewBag.Layout
 }
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Roles - SB Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="~/css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        .w3-btn {
+            width: 150px;
+        }
+    </style>
+</head>
+<body class="sb-nav-fixed">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4"> Tabla de Roles</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a asp-area="" asp-controller="Administrador" asp-action="ImprimirTipoDir">Panel</a></li>
+                <li class="breadcrumb-item active">Médicos</li>
+            </ol>
+            <div class="card mb-4">
+                <div class="card-body">
+                    En esta sección, puedes explorar la lista de médicos disponibles en el sistema.
+                    Los medicos son conjuntos de profecionales dispuestos a resivir las citas dentro de nuestro sistema.
+                    Tambien podras modificar el medico con los botones de control.
+                    <a target="_blank" href="https://github.com/Snayderstone/AppWebSistemaClinica">Más Información.</a>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <a class="w3-button w3-green w3-round-xlarge" asp-area="" asp-controller="Administrador" asp-action="CrearTipoDir">Crear Médicos</a>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Médicos
+                </div>
+                <div class="card-body">
+                    <table id="datatablesSimple" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Descripcion</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var medico in Model)
+                            {
+                                <tr>
+                                    <td>@medico.Id</td>
+                                    <td>@medico.Descrip</td>
+                                    <td>@medico.estado</td>
+
+                                    <td>
+                                        <a class="w3-button w3-blue w3-round-xlarge" asp-route-id="@medico.IdMedico" asp-controller="Administrador" asp-action="EditarMedico">Editar</a>
+                                        <a class="w3-button w3-red w3-round-xlarge" asp-route-id="@medico.IdMedico" asp-controller="Administrador" asp-action="EliminarMedico"
+                                           onclick="return confirm('¿Estás seguro de que deseas eliminar este médico?')">Eliminar</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="~/js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="~/js/datatables-simple-demo.js"></script>
+</body>
+</html>

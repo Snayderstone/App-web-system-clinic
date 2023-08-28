@@ -29,11 +29,11 @@
             <h1 class="mt-4"> Tabla de Roles</h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item"><a asp-area="" asp-controller="Administrador" asp-action="ImprimirTipoDir">Panel</a></li>
-                <li class="breadcrumb-item active">Médicos</li>
+                <li class="breadcrumb-item active">Tipos Dir</li>
             </ol>
             <div class="card mb-4">
                 <div class="card-body">
-                    En esta sección, puedes explorar la lista de médicos disponibles en el sistema.
+                    En esta sección, puedes explorar la lista de tipos dir disponibles en el sistema.
                     Los medicos son conjuntos de profecionales dispuestos a resivir las citas dentro de nuestro sistema.
                     Tambien podras modificar el medico con los botones de control.
                     <a target="_blank" href="https://github.com/Snayderstone/AppWebSistemaClinica">Más Información.</a>
@@ -49,7 +49,7 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    Médicos
+                    TiposDir
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple" class="table table-bordered">
@@ -70,9 +70,9 @@
                                     <td>@medico.estado</td>
 
                                     <td>
-                                        <a class="w3-button w3-blue w3-round-xlarge" asp-route-id="@medico.Id" asp-controller="Administrador" asp-action="EditarMedico">Editar</a>
-                                        <a class="w3-button w3-red w3-round-xlarge" asp-route-id="@medico.Id" asp-controller="Administrador" asp-action="EliminarMedico"
-                                           onclick="return confirm('¿Estás seguro de que deseas eliminar este médico?')">Eliminar</a>
+                                        <a class="w3-button w3-blue w3-round-xlarge" asp-route-id="@medico.Id" asp-controller="Administrador" asp-action="EditarTipoDir">Editar</a>
+                                        <a class="w3-button w3-red w3-round-xlarge" asp-route-id="@medico.Id" asp-controller="Administrador" asp-action="EliminarTipoDir"
+                                           onclick="return confirm('¿Estás seguro de que deseas eliminar este tipodir?')">Eliminar</a>
                                     </td>
                                 </tr>
                             }

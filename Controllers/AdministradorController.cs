@@ -39,124 +39,125 @@ namespace AppWebSistemaClinica.Controllers
         [Route("ImprimirTipoDir")]
         public IActionResult ImprimirTipoDir()
         {
-            try
-            {
-                var roles = _tipodirLogic.imprimirTipoDir();
-                var viewModelList = roles.Select(r => new RolViewModel
-                {
-                    IdRol = r.IdRol,
-                    NombreRol = r.NombreRol,
-                    DescripcionRol = r.DescripcionRol,
-                }).ToList();
+            //try
+            //{
+            //    var roles = _tipodirLogic.imprimirTipoDir();
+            //    var viewModelList = roles.Select(r => new RolViewModel
+            //    {
+            //        IdRol = r.IdRol,
+            //        NombreRol = r.NombreRol,
+            //        DescripcionRol = r.DescripcionRol,
+            //    }).ToList();
 
-                return View(viewModelList);
+            //    return View(viewModelList);
 
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = "Error al obtener los roles: " + ex.Message });
-            }
-
-        }
-
-        [HttpGet]
-        [Route("CrearRol")]
-        public IActionResult CrearRol()
-        {
+            //}
+            //catch (Exception ex)
+            //{
+            //    return StatusCode(500, new { message = "Error al obtener los roles: " + ex.Message });
+            //}
             return View();
+
         }
 
-        [HttpPost]
-        [Route("CrearRol")]
-        public IActionResult CrearRol([FromForm] RolViewModel rolViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var rolModel = new C1ModelRol
-                    {
-                        NombreRol = rolViewModel.NombreRol,
-                        DescripcionRol = rolViewModel.DescripcionRol,
-                    };
-                    _rolLogic.insertarRol(rolModel);
-                    return RedirectToAction("ImprimirRoles");
-                }
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError(string.Empty, "Error al crear el rol: " + ex.Message);
-                }
-            }
-            return View(rolViewModel);
-        }
+        //[HttpGet]
+        //[Route("CrearRol")]
+        //public IActionResult CrearRol()
+        //{
+        //    return View();
+        //}
 
-        [HttpGet]
-        [Route("Rol/Editar/{id}")]
-        public IActionResult EditarRol(int id)
-        {
-            try
-            {
-                var rolModel = _rolLogic.buscarRolPorId(id);
+        //[HttpPost]
+        //[Route("CrearRol")]
+        //public IActionResult CrearRol([FromForm] RolViewModel rolViewModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            var rolModel = new C1ModelRol
+        //            {
+        //                NombreRol = rolViewModel.NombreRol,
+        //                DescripcionRol = rolViewModel.DescripcionRol,
+        //            };
+        //            _rolLogic.insertarRol(rolModel);
+        //            return RedirectToAction("ImprimirRoles");
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            ModelState.AddModelError(string.Empty, "Error al crear el rol: " + ex.Message);
+        //        }
+        //    }
+        //    return View(rolViewModel);
+        //}
 
-                var rolViewModel = new RolViewModel
-                {
-                    IdRol = rolModel.IdRol,
-                    NombreRol = rolModel.NombreRol,
-                    DescripcionRol = rolModel.DescripcionRol
-                };
+        //[HttpGet]
+        //[Route("Rol/Editar/{id}")]
+        //public IActionResult EditarRol(int id)
+        //{
+        //    try
+        //    {
+        //        var rolModel = _rolLogic.buscarRolPorId(id);
 
-                return View(rolViewModel);
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError(string.Empty, "Error al buscar el rol: " + ex.Message);
-                return RedirectToAction("ImprimirRoles");
-            }
-        }
+        //        var rolViewModel = new RolViewModel
+        //        {
+        //            IdRol = rolModel.IdRol,
+        //            NombreRol = rolModel.NombreRol,
+        //            DescripcionRol = rolModel.DescripcionRol
+        //        };
 
-        [HttpPost]
-        [Route("Rol/Editar/{id}")]
-        public IActionResult EditarRol(int id, [FromForm] RolViewModel rolViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var rolModel = new C1ModelRol
-                    {
-                        IdRol = rolViewModel.IdRol,
-                        NombreRol = rolViewModel.NombreRol,
-                        DescripcionRol = rolViewModel.DescripcionRol
-                    };
+        //        return View(rolViewModel);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ModelState.AddModelError(string.Empty, "Error al buscar el rol: " + ex.Message);
+        //        return RedirectToAction("ImprimirRoles");
+        //    }
+        //}
 
-                    _rolLogic.actualizarRol(rolModel);
+        //[HttpPost]
+        //[Route("Rol/Editar/{id}")]
+        //public IActionResult EditarRol(int id, [FromForm] RolViewModel rolViewModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            var rolModel = new C1ModelRol
+        //            {
+        //                IdRol = rolViewModel.IdRol,
+        //                NombreRol = rolViewModel.NombreRol,
+        //                DescripcionRol = rolViewModel.DescripcionRol
+        //            };
 
-                    return RedirectToAction("ImprimirRoles");
-                }
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError(string.Empty, "Error al actualizar el rol: " + ex.Message);
-                }
-            }
+        //            _rolLogic.actualizarRol(rolModel);
 
-            return View(rolViewModel);
-        }
+        //            return RedirectToAction("ImprimirRoles");
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            ModelState.AddModelError(string.Empty, "Error al actualizar el rol: " + ex.Message);
+        //        }
+        //    }
 
-        [HttpGet]
-        [Route("EliminarRol/{id}")]
-        public IActionResult EliminarRol(int id)
-        {
-            try
-            {
-                _rolLogic.eliminarRol(id);
+        //    return View(rolViewModel);
+        //}
 
-                return RedirectToAction("ImprimirRoles");
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = "Error al eliminar el rol: " + ex.Message });
-            }
-        }
+        //[HttpGet]
+        //[Route("EliminarRol/{id}")]
+        //public IActionResult EliminarRol(int id)
+        //{
+        //    try
+        //    {
+        //        _rolLogic.eliminarRol(id);
+
+        //        return RedirectToAction("ImprimirRoles");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, new { message = "Error al eliminar el rol: " + ex.Message });
+        //    }
+        //}
 
 
         [HttpGet]

@@ -13,7 +13,7 @@ namespace AppWebSistemaClinica.C1Model
         public string CedulaPaciente { get; set; }
         public DateTime FechaNacimientoPaciente { get; set; }
         public int EdadPaciente { get; set; }
-        public string TelefonoPaciente { get; set;}
+        public string TelefonoPaciente { get; set; }
         public string CorreoPaciente { get; set; }
         public string EstadoCivilPaciente { get; set; }
 
@@ -22,6 +22,8 @@ namespace AppWebSistemaClinica.C1Model
 
         [Required]
         public virtual ICollection<C1ModelHistorialClinico> C1ModelHistorialClinico { get; set; }
+
+        public virtual ICollection<DireccionCD> DireccionCDs { get; set; }
 
     }
 }

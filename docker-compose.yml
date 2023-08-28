@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  appwebsistemaclinica:
+    image: ${DOCKER_REGISTRY-}appwebsistemaclinica
+    build:
+      context: .
+      dockerfile: Dockerfile

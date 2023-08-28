@@ -1,4 +1,4 @@
-﻿@model List<PerfilViewModel>
+﻿@model List<TipoDirViewModel>
 
 @{
     Layout = ViewBag.Layout; // Establecer el diseño utilizando la variable ViewBag.Layout
@@ -66,7 +66,7 @@
                             @foreach (var perfil in Model)
                             {
                                 <tr>
-                                    <td>@perfil.IdPerfil</td>
+                                    <td>@perfil.i</td>
                                     <td>@perfil.NombreUsuario @perfil.ApellidoUsuario</td>
                                     <td>@perfil.NombreRol</td>
                                     <td>@perfil.CorreoElectronico</td>
